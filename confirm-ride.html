@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Ride</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 393px;
+            height: 852px;
+            position: relative;
+            background: white;
+            overflow: hidden;
+        }
+        .car-sharing-text {
+            width: 341px;
+            position: absolute;
+            left: 26px;
+            top: 125px;
+            text-align: center;
+            color: black;
+            font-size: 34px;
+            font-weight: 400;
+        }
+        .icon {
+            width: 52px;
+            height: 52px;
+            position: absolute;
+            left: 17px;
+            top: 17px;
+            background: #D9D9D9;
+        }
+        .icon-line1, .icon-line2 {
+            width: 40.80px;
+            height: 32px;
+            position: absolute;
+            outline: 1px black solid;
+            outline-offset: -0.50px;
+        }
+        .icon-line1 {
+            transform: rotate(45deg);
+            top: 17.52px;
+            left: 39.63px;
+        }
+        .icon-line2 {
+            transform: rotate(135deg);
+            top: 39.63px;
+            left: 68.48px;
+        }
+        .footer-icons {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 20px;
+            position: absolute;
+            bottom: 20px;
+        }
+        .footer-icon {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: black;
+            cursor: pointer;
+        }
+        .footer-icon:hover {
+            color: #555;
+        }
+        .back-button {
+            position: absolute;
+            left: 21px;
+            top: 89px;
+            color: black;
+            font-size: 10px;
+            font-weight: 400;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .back-button:hover {
+            text-decoration: underline;
+        }
+        .input-label {
+            position: absolute;
+            color: black;
+            font-size: 14px;
+            font-weight: 400;
+        }
+        .input-label.from {
+            left: 11px;
+            top: 201px;
+        }
+        .input-label.to {
+            left: 229px;
+            top: 202px;
+        }
+        .input-label.start-date {
+            left: 100px;
+            top: 255px;
+        }
+        .input-label.end-date {
+            left: 101px;
+            top: 297px;
+        }
+        .input-box {
+            position: absolute;
+            background: #D9D9D9;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+        .input-box.from {
+            width: 152px;
+            height: 21px;
+            left: 57px;
+            top: 201px;
+        }
+        .input-box.to {
+            width: 123px;
+            height: 21px;
+            left: 256px;
+            top: 201px;
+        }
+        .input-box.start-date {
+            width: 152px;
+            height: 21px;
+            left: 196px;
+            top: 255px;
+        }
+        .input-box.end-date {
+            width: 152px;
+            height: 21px;
+            left: 197px;
+            top: 297px;
+        }
+        .input-text {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            font-size: 12px;
+            color: black;
+        }
+        .rides-available-text {
+            position: absolute;
+            left: 146px;
+            top: 380px;
+            color: black;
+            font-size: 12px;
+            font-weight: 400;
+        }
+        .driver-info {
+            position: absolute;
+            color: black;
+            font-size: 12px;
+            font-weight: 400;
+        }
+        .driver-info.name {
+            left: 21px;
+            top: 413px;
+        }
+        .driver-info.badge-tier {
+            left: 135px;
+            top: 413px;
+        }
+        .driver-info.rides-given {
+            left: 225px;
+            top: 413px;
+        }
+        .driver-info.car-price {
+            left: 323px;
+            top: 413px;
+        }
+        .driver-row {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .driver-row.name {
+            left: 26px;
+            top: 457px;
+        }
+        .driver-row.badge-tier {
+            left: 151px;
+            top: 457px;
+            font-size: 24px;
+        }
+        .driver-row.rides-given {
+            left: 222px;
+            top: 457px;
+        }
+        .driver-row.car-price {
+            left: 331px;
+            top: 457px;
+        }
+        .confirm-button {
+            width: 199px;
+            height: 28px;
+            position: absolute;
+            left: 95px;
+            top: 735px;
+            background: #D9D9D9;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .confirm-button-text {
+            color: black;
+            font-size: 14px;
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="car-sharing-text">Car Sharing</div>
+        <div class="icon">
+            <div class="icon-line1"></div>
+            <div class="icon-line2"></div>
+        </div>
+        <a href="search-ride.html" class="back-button">< Back</a>
+        <div class="input-label from">From: </div>
+        <div class="input-label to">To:</div>
+        <div class="input-label start-date">Start Date:</div>
+        <div class="input-label end-date">End Date:</div>
+        <div class="input-box from">
+            <input type="text" id="from-display" class="input-text" readonly>
+        </div>
+        <div class="input-box to">
+            <input type="text" id="to-display" class="input-text" readonly>
+        </div>
+        <div class="input-box start-date">
+            <input type="text" id="start-date-display" class="input-text" readonly>
+        </div>
+        <div class="input-box end-date">
+            <input type="text" id="end-date-display" class="input-text" readonly>
+        </div>
+        <div class="rides-available-text">RIDES AVAILABLE</div>
+        <div class="driver-info name">Name of Driver</div>
+        <div class="driver-info badge-tier">Badge Tier</div>
+        <div class="driver-info rides-given">Rides Given</div>
+        <div class="driver-info car-price">Car Price</div>
+        <div class="driver-row name">
+            <div style="width: 73px; height: 9px; background: #D9D9D9;"></div>
+        </div>
+        <div class="driver-row badge-tier">
+            ♔ <!-- King icon -->
+        </div>
+        <div class="driver-row rides-given">
+            <div style="width: 73px; height: 9px; background: #D9D9D9;"></div>
+        </div>
+        <div class="driver-row car-price">
+            <div style="width: 39px; height: 9px; background: #D9D9D9;"></div>
+        </div>
+        <div class="confirm-button">
+            <div class="confirm-button-text">CONFIRM RIDE</div>
+        </div>
+        <div class="footer-icons">
+            <div class="footer-icon" title="Home" onclick="window.location.href='index.html'">🏠</div>
+            <div class="footer-icon" title="Communication" onclick="window.location.href='communication.html'">📞</div>
+            <div class="footer-icon" title="Calendar" onclick="window.location.href='calendar.html'">📅</div>
+            <div class="footer-icon" title="User" onclick="window.location.href='profile.html'">👤</div>
+        </div>
+    </div>
+
+    <script>
+        // Get the query parameters from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const from = urlParams.get('from');
+        const to = urlParams.get('to');
+        const startDate = urlParams.get('startDate');
+        const endDate = urlParams.get('endDate');
+
+        // Display the values in the input fields
+        document.getElementById('from-display').value = from;
+        document.getElementById('to-display').value = to;
+        document.getElementById('start-date-display').value = startDate;
+        document.getElementById('end-date-display').value = endDate;
+
+        // Redirect to the next page when the confirm button is clicked
+        document.querySelector('.confirm-button').addEventListener('click', () => {
+            window.location.href = `next-page.html?from=${from}&to=${to}&startDate=${startDate}&endDate=${endDate}`;
+        });
+    </script>
+</body>
+</html>

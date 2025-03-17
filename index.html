@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ontario Parks Social Hub</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 393px;
+            height: 852px;
+            position: relative;
+            background: white;
+        }
+        .welcome-text {
+            width: 341px;
+            position: absolute;
+            left: 25px;
+            top: 96px;
+            text-align: center;
+            color: black;
+            font-size: 34px;
+            font-weight: 400;
+        }
+        .icon {
+            width: 52px;
+            height: 52px;
+            position: absolute;
+            left: 17px;
+            top: 17px;
+            background: #D9D9D9;
+        }
+        .icon-line1, .icon-line2 {
+            width: 40.80px;
+            height: 32px;
+            position: absolute;
+            outline: 1px black solid;
+            outline-offset: -0.50px;
+        }
+        .icon-line1 {
+            transform: rotate(45deg);
+            top: 17.52px;
+            left: 39.63px;
+        }
+        .icon-line2 {
+            transform: rotate(135deg);
+            top: 39.63px;
+            left: 68.48px;
+        }
+        .footer-icons {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 20px;
+            position: absolute;
+            bottom: 20px;
+        }
+        .footer-icon {
+            width: 45px;
+            height: 45px;
+            overflow: hidden;
+            position: relative;
+        }
+        .footer-icon-inner {
+            position: absolute;
+            background: black;
+        }
+        .footer-icon1-inner {
+            width: 36.93px;
+            height: 42.05px;
+            left: 4.37px;
+            top: 2.95px;
+        }
+        .footer-icon2-inner {
+            width: 41.67px;
+            height: 37.50px;
+            left: 4.17px;
+            top: 6.25px;
+        }
+        .footer-icon3-inner {
+            width: 33.31px;
+            height: 39.62px;
+            left: 5.55px;
+            top: 3.96px;
+        }
+        .footer-icon4-inner {
+            width: 33.33px;
+            height: 33.33px;
+            left: 8.33px;
+            top: 8.33px;
+        }
+        .content-box {
+            position: absolute;
+            background: rgba(217, 217, 217, 0);
+            border: 1px rgba(0, 0, 0, 0.50) solid;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .content-box.large {
+            width: 304px;
+            height: 114px;
+        }
+        .content-box.small {
+            width: 164px;
+            height: 114px;
+        }
+        .content-box.tips {
+            width: 124px;
+            height: 114px;
+        }
+        .content-text {
+            text-align: center;
+            color: black;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .image-box {
+            left: 42px;
+            top: 247px;
+        }
+        .upcoming-trip-box {
+            left: 42px;
+            top: 378px;
+        }
+        .tips-box {
+            left: 221px;
+            top: 378px;
+        }
+        .car-sharing-box {
+            left: 42px;
+            top: 511px;
+        }
+        .rush-camping-box {
+            left: 221px;
+            top: 511px;
+        }
+        .social-hub-box {
+            left: 42px;
+            top: 644px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="welcome-text">Welcome to <br/>Ontario Parks<br/>Social Hub </div>
+        <div class="icon">
+            <div class="icon-line1"></div>
+            <div class="icon-line2"></div>
+        </div>
+        <div class="content-box large image-box">
+            <div class="content-text">Image</div>
+        </div>
+        <div class="content-box small upcoming-trip-box">
+            <div class="content-text">Upcoming<br/>Car Sharing <br/>Trip</div>
+        </div>
+        <div class="content-box tips tips-box">
+            <div class="content-text">TIPS</div>
+        </div>
+        <div class="content-box small car-sharing-box" onclick="window.location.href='car-sharing.html'">
+            <div class="content-text">Car Sharing</div>
+        </div>
+        <div class="content-box tips rush-camping-box">
+            <div class="content-text">Rush<br/>Camping</div>
+        </div>
+        <div class="content-box large social-hub-box">
+            <div class="content-text">Social Hub</div>
+        </div>
+        <div class="footer-icons">
+            <div class="footer-icon">
+                <div class="footer-icon-inner footer-icon1-inner"></div>
+            </div>
+            <div class="footer-icon">
+                <div class="footer-icon-inner footer-icon2-inner"></div>
+            </div>
+            <div class="footer-icon">
+                <div class="footer-icon-inner footer-icon3-inner"></div>
+            </div>
+            <div class="footer-icon">
+                <div class="footer-icon-inner footer-icon4-inner"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

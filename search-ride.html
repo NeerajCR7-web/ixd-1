@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search for a Ride</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 393px;
+            height: 852px;
+            position: relative;
+            background: white;
+            overflow: hidden;
+        }
+        .header {
+            position: absolute;
+            left: 26px;
+            top: 125px;
+            display: flex;
+            align-items: center;
+            gap: 20px; /* Space between "Back" and "Car Sharing" */
+        }
+        .back-button {
+            color: black;
+            font-size: 14px;
+            font-weight: 400;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .back-button:hover {
+            text-decoration: underline;
+        }
+        .car-sharing-text {
+            color: black;
+            font-size: 34px;
+            font-weight: 400;
+        }
+        .icon {
+            width: 52px;
+            height: 52px;
+            position: absolute;
+            left: 17px;
+            top: 17px;
+            background: #D9D9D9;
+        }
+        .icon-line1, .icon-line2 {
+            width: 40.80px;
+            height: 32px;
+            position: absolute;
+            outline: 1px black solid;
+            outline-offset: -0.50px;
+        }
+        .icon-line1 {
+            transform: rotate(45deg);
+            top: 17.52px;
+            left: 39.63px;
+        }
+        .icon-line2 {
+            transform: rotate(135deg);
+            top: 39.63px;
+            left: 68.48px;
+        }
+        .footer-icons {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 20px;
+            position: absolute;
+            bottom: 20px;
+        }
+        .footer-icon {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px; /* Size of the icons */
+            color: black; /* Color of the icons */
+            cursor: pointer;
+        }
+        .footer-icon:hover {
+            color: #555; /* Hover effect for icons */
+        }
+        .image-box {
+            width: 304px;
+            height: 114px;
+            position: absolute;
+            left: 44px;
+            top: 196px;
+            background: rgba(217, 217, 217, 0);
+            border: 1px rgba(0, 0, 0, 0.50) solid;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .input-label {
+            position: absolute;
+            color: black;
+            font-size: 14px;
+            font-weight: 400;
+        }
+        .input-label.from {
+            left: 78px;
+            top: 341px;
+        }
+        .input-label.to {
+            left: 78px;
+            top: 382px;
+        }
+        .input-label.passengers {
+            left: 78px;
+            top: 423px;
+        }
+        .input-label.start-date {
+            left: 78px;
+            top: 478px;
+        }
+        .input-label.end-date {
+            left: 78px;
+            top: 533px;
+        }
+        .input-box {
+            position: absolute;
+            background: #D9D9D9;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+        .input-box.from {
+            width: 152px;
+            height: 21px;
+            left: 124px;
+            top: 341px;
+        }
+        .input-box.to {
+            width: 168px;
+            height: 21px;
+            left: 108px;
+            top: 381px;
+        }
+        .input-box.start-date {
+            width: 152px;
+            height: 21px;
+            left: 169px;
+            top: 478px;
+        }
+        .input-box.end-date {
+            width: 152px;
+            height: 21px;
+            left: 169px;
+            top: 533px;
+        }
+        .date-input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            font-size: 12px;
+            color: black;
+        }
+        .passenger-control {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: #D9D9D9;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .passenger-control.minus {
+            left: 255px;
+            top: 423px;
+        }
+        .passenger-control.plus {
+            left: 314px;
+            top: 423px;
+            background: #818181;
+        }
+        .passenger-control-text {
+            position: absolute;
+            color: black;
+            font-size: 12px;
+            font-weight: 400;
+        }
+        .passenger-control-text.minus {
+            left: 260px;
+            top: 424px;
+        }
+        .passenger-control-text.plus {
+            left: 319px;
+            top: 424px;
+        }
+        .passenger-count {
+            position: absolute;
+            left: 280px;
+            top: 424px;
+            color: black;
+            font-size: 12px;
+            font-weight: 400;
+        }
+        .location-icon {
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            left: 248px;
+            top: 343px;
+            overflow: hidden;
+        }
+        .location-icon-inner {
+            width: 9.33px;
+            height: 13.33px;
+            position: absolute;
+            left: 3.33px;
+            top: 1.33px;
+            background: black;
+        }
+        .search-button {
+            width: 199px;
+            height: 28px;
+            position: absolute;
+            left: 97px;
+            top: 604px;
+            background: #D9D9D9;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .search-button-text {
+            color: black;
+            font-size: 14px;
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="car-sharing.html" class="back-button">Back</a>
+            <div class="car-sharing-text">Car Sharing</div>
+        </div>
+        <div class="icon">
+            <div class="icon-line1"></div>
+            <div class="icon-line2"></div>
+        </div>
+        <div class="image-box"></div>
+        <div class="input-label from">From: </div>
+        <div class="input-label to">To:</div>
+        <div class="input-label passengers">Number of Passengers :</div>
+        <div class="input-label start-date">Start Date:</div>
+        <div class="input-label end-date">End Date:</div>
+        <div class="input-box from">
+            <input type="text" id="from" placeholder="Your Location" style="border: none; background: transparent; outline: none; width: 100%;">
+        </div>
+        <div class="input-box to">
+            <input type="text" id="to" placeholder="Algonquin Park" style="border: none; background: transparent; outline: none; width: 100%;">
+        </div>
+        <div class="input-box start-date">
+            <input type="date" id="start-date" class="date-input">
+        </div>
+        <div class="input-box end-date">
+            <input type="date" id="end-date" class="date-input">
+        </div>
+        <div class="passenger-control minus" onclick="updatePassengerCount(-1)"></div>
+        <div class="passenger-control plus" onclick="updatePassengerCount(1)"></div>
+        <div class="passenger-control-text minus">-</div>
+        <div class="passenger-control-text plus">+</div>
+        <div class="passenger-count" id="passenger-count">1</div>
+        <div class="location-icon">
+            <div class="location-icon-inner"></div>
+        </div>
+        <div class="search-button" onclick="redirectToConfirmRide()">
+            <div class="search-button-text">SEARCH</div>
+        </div>
+        <div class="footer-icons">
+            <div class="footer-icon" title="Home" onclick="window.location.href='index.html'">🏠</div>
+            <div class="footer-icon" title="Communication" onclick="window.location.href='communication.html'">📞</div>
+            <div class="footer-icon" title="Calendar" onclick="window.location.href='calendar.html'">📅</div>
+            <div class="footer-icon" title="User" onclick="window.location.href='profile.html'">👤</div>
+        </div>
+    </div>
+
+    <script>
+        let passengerCount = 1;
+
+        function updatePassengerCount(change) {
+            passengerCount += change;
+            if (passengerCount < 1) passengerCount = 1; // Ensure count doesn't go below 1
+            document.getElementById('passenger-count').textContent = passengerCount;
+        }
+
+        function redirectToConfirmRide() {
+            // Get the values from the input fields
+            const from = document.getElementById('from').value;
+            const to = document.getElementById('to').value;
+            const startDate = document.getElementById('start-date').value;
+            const endDate = document.getElementById('end-date').value;
+
+            // Redirect to the Confirm Ride page with query parameters
+            window.location.href = `confirm-ride.html?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&startDate=${encodeURIComponent(startDate)}&endDate=${encodeURIComponent(endDate)}`;
+        }
+    </script>
+</body>
+</html>
