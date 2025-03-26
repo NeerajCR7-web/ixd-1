@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search for a Ride</title>
+    <title>Car Sharing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Montserrat:wght@400;600&family=Inter:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         body {
             margin: 0;
-            font-family: 'Inter', sans-serif;
-            background: white;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+            font-family: 'Raleway', sans-serif;
         }
+        
         .container {
             width: 393px;
             height: 852px;
@@ -21,296 +25,713 @@
             background: white;
             overflow: hidden;
         }
+        
         .header {
+            width: 393px;
+            height: 142px;
             position: absolute;
-            left: 26px;
-            top: 125px;
+            top: 0;
+            left: 0;
+            background: #2F75BB;
+        }
+        
+        .header-title {
+            position: absolute;
+            left: 121px;
+            top: 93px;
+            color: white;
+            font-size: 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .back-container {
+            position: absolute;
+            left: 12px;
+            top: 57px;
             display: flex;
             align-items: center;
-            gap: 20px; /* Space between "Back" and "Car Sharing" */
+            gap: 8px;
+            cursor: pointer;
         }
-        .back-button {
-            color: black;
+        
+        .back-icon {
+            width: 25px;
+            height: 25px;
+        }
+        
+        .back-text {
+            color: white;
             font-size: 14px;
-            font-weight: 400;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .back-button:hover {
-            text-decoration: underline;
-        }
-        .car-sharing-text {
-            color: black;
-            font-size: 34px;
+            font-family: 'Raleway', sans-serif;
             font-weight: 400;
         }
-        .icon {
-            width: 52px;
-            height: 52px;
-            position: absolute;
-            left: 17px;
-            top: 17px;
-            background: #D9D9D9;
-        }
-        .icon-line1, .icon-line2 {
-            width: 40.80px;
-            height: 32px;
-            position: absolute;
-            outline: 1px black solid;
-            outline-offset: -0.50px;
-        }
-        .icon-line1 {
-            transform: rotate(45deg);
-            top: 17.52px;
-            left: 39.63px;
-        }
-        .icon-line2 {
-            transform: rotate(135deg);
-            top: 39.63px;
-            left: 68.48px;
-        }
-        .footer-icons {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            padding: 0 20px;
-            position: absolute;
-            bottom: 20px;
-        }
-        .footer-icon {
-            width: 45px;
-            height: 45px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px; /* Size of the icons */
-            color: black; /* Color of the icons */
-            cursor: pointer;
-        }
-        .footer-icon:hover {
-            color: #555; /* Hover effect for icons */
-        }
-        .image-box {
+        
+        .car-image {
             width: 304px;
             height: 114px;
             position: absolute;
             left: 44px;
             top: 196px;
-            background: rgba(217, 217, 217, 0);
-            border: 1px rgba(0, 0, 0, 0.50) solid;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            border-radius: 5px;
+            object-fit: cover;
         }
-        .input-label {
+        
+        .label {
             position: absolute;
             color: black;
-            font-size: 14px;
+            font-size: 18px;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 400;
         }
-        .input-label.from {
-            left: 78px;
-            top: 341px;
+        
+        .from-label {
+            left: 49px;
+            top: 347px;
         }
-        .input-label.to {
-            left: 78px;
-            top: 382px;
+        
+        .to-label {
+            left: 49px;
+            top: 416px;
         }
-        .input-label.passengers {
-            left: 78px;
-            top: 423px;
+        
+        .passengers-label {
+            left: 56px;
+            top: 483px;
         }
-        .input-label.start-date {
-            left: 78px;
-            top: 478px;
+        
+        .start-date-label {
+            left: 58px;
+            top: 549px;
         }
-        .input-label.end-date {
-            left: 78px;
-            top: 533px;
+        
+        .end-date-label {
+            left: 58px;
+            top: 620px;
         }
-        .input-box {
+        
+        .location-input {
+            width: 180px;
+            height: 30px;
             position: absolute;
-            background: #D9D9D9;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            padding: 0 10px;
-        }
-        .input-box.from {
-            width: 152px;
-            height: 21px;
-            left: 124px;
-            top: 341px;
-        }
-        .input-box.to {
-            width: 168px;
-            height: 21px;
-            left: 108px;
-            top: 381px;
-        }
-        .input-box.start-date {
-            width: 152px;
-            height: 21px;
-            left: 169px;
-            top: 478px;
-        }
-        .input-box.end-date {
-            width: 152px;
-            height: 21px;
-            left: 169px;
-            top: 533px;
-        }
-        .date-input {
-            border: none;
-            background: transparent;
+            left: 137px;
+            top: 342px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid black;
+            color: black;
+            font-size: 18px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 700;
+            padding: 3px 8px;
             outline: none;
-            width: 100%;
-            font-size: 12px;
-            color: black;
         }
-        .passenger-control {
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            background: #D9D9D9;
-            cursor: pointer;
+        
+        .location-input::placeholder {
+            color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .to-input {
+            width: 200px;
+            height: 37px;
+            left: 102px;
+            top: 411px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid black;
+            color: black;
+            font-size: 18px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 700;
+            padding: 0 10px;
+            outline: none;
+            text-align: center;
+        }
+        
+        .to-input::placeholder {
+            color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .passenger-controls {
+            position: fixed;
+            left: 1040px;
+            top: 494px;
             display: flex;
-            justify-content: center;
             align-items: center;
+            gap: 15px;
         }
-        .passenger-control.minus {
-            left: 255px;
-            top: 423px;
-        }
-        .passenger-control.plus {
-            left: 314px;
-            top: 423px;
-            background: #818181;
-        }
-        .passenger-control-text {
-            position: absolute;
-            color: black;
-            font-size: 12px;
-            font-weight: 400;
-        }
-        .passenger-control-text.minus {
-            left: 260px;
-            top: 424px;
-        }
-        .passenger-control-text.plus {
-            left: 319px;
-            top: 424px;
-        }
+        
         .passenger-count {
-            position: absolute;
-            left: 280px;
-            top: 424px;
-            color: black;
-            font-size: 12px;
+            width: 30px;
+            text-align: center;
+            font-size: 18px;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 400;
         }
-        .location-icon {
-            width: 16px;
-            height: 16px;
-            position: absolute;
-            left: 248px;
-            top: 343px;
-            overflow: hidden;
-        }
-        .location-icon-inner {
-            width: 9.33px;
-            height: 13.33px;
-            position: absolute;
-            left: 3.33px;
-            top: 1.33px;
-            background: black;
-        }
-        .search-button {
-            width: 199px;
-            height: 28px;
-            position: absolute;
-            left: 97px;
-            top: 604px;
-            background: #D9D9D9;
-            border-radius: 5px;
+        
+        .minus-btn, .plus-btn {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            cursor: pointer;
+            user-select: none;
+            border: none;
+        }
+        
+        .minus-btn {
+            background: #D9D9D9;
+            color: black;
+        }
+        
+        .plus-btn {
+            background: #2F75BB;
+            color: black;
+        }
+        
+        .date-input {
+            width: 180px;
+            height: 37px;
+            position: absolute;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid black;
+            color: black;
+            font-size: 18px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 700;
+            text-align: center;
+            outline: none;
+        }
+        
+        .start-date {
+            left: 178px;
+            top: 543px;
+        }
+        
+        .end-date {
+            left: 178px;
+            top: 612px;
+        }
+        
+        .search-btn {
+            width: 96px;
+            height: 37px;
+            position: absolute;
+            left: 154px;
+            top: 684px;
+            background: #2F75BB;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 18px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 700;
             cursor: pointer;
         }
-        .search-button-text {
+        
+        .navbar {
+            width: 393px;
+            height: 62px;
+            position: absolute;
+            left: 0;
+            top: 754px;
+        }
+        
+        .nav-divider {
+            width: 100%;
+            height: 0;
+            border-top: 0.2px solid #7E7B7B;
+        }
+        
+        .nav-icons {
+            position: absolute;
+            left: 40px;
+            top: 15px;
+            display: flex;
+            gap: 64px;
+        }
+        
+        .nav-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+        
+        .nav-label {
+            position: absolute;
             color: black;
-            font-size: 14px;
+            font-size: 12px;
+            font-family: 'Raleway', sans-serif;
             font-weight: 400;
+        }
+        
+        .home-label {
+            left: 37px;
+            top: 48px;
+        }
+        
+        .book-label {
+            left: 134px;
+            top: 48px;
+        }
+        
+        .social-label {
+            left: 216px;
+            top: 48px;
+        }
+        
+        .profile-label {
+            left: 320px;
+            top: 48px;
+        }
+        
+        /* Map Modal */
+        .map-modal {
+            display: none;
+            position: absolute;
+            top: 380px;
+            left: 44px;
+            width: 304px;
+            height: 200px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+        
+        #location-map {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+        }
+        
+        .close-map {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            z-index: 101;
+            font-weight: bold;
+        }
+
+        /* Location icon */
+        .location-icon {
+            position: absolute;
+            right: 20px;
+            top: 347px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        
+        /* Autocomplete styles */
+        .autocomplete {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid #d4d4d4;
+            border-bottom: none;
+            border-top: none;
+            z-index: 99;
+            top: 100%;
+            left: 0;
+            right: 0;
+            max-height: 150px;
+            overflow-y: auto;
+            display: none;
+        }
+        
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #fff;
+            border-bottom: 1px solid #d4d4d4;
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        .autocomplete-items div:hover {
+            background-color: #e9e9e9;
+        }
+        
+        .autocomplete-active {
+            background-color: #028A61 !important;
+            color: #ffffff;
+        }
+        
+        .to-input-container {
+            position: absolute;
+            left: 102px;
+            top: 411px;
+            width: 200px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <a href="car-sharing.html" class="back-button">Back</a>
-            <div class="car-sharing-text">Car Sharing</div>
+        <!-- Header Section -->
+        <div class="header"></div>
+        <h1 class="header-title">Car Sharing</h1>
+        
+        <!-- Back Button -->
+        <div class="back-container" onclick="window.location.href='car-sharing.html'">
+            <img class="back-icon" src="images/Back.png" alt="Back">
+            <div class="back-text">Back</div>
         </div>
-        <div class="icon">
-            <div class="icon-line1"></div>
-            <div class="icon-line2"></div>
+        
+        <!-- Car Image -->
+        <img class="car-image" src="images/sharing.png" alt="Car sharing">
+        
+        <!-- Form Labels -->
+        <div class="label from-label">From: </div>
+        <div class="label to-label">To:</div>
+        <div class="label passengers-label">Number of Passengers :</div>
+        <div class="label start-date-label">Start Date:</div>
+        <div class="label end-date-label">End Date:</div>
+        
+        <!-- Location Input -->
+        <input type="text" class="location-input" placeholder="Your Location" id="from-location">
+        
+        <!-- Location Icon -->
+        <img src="images/location.png" class="location-icon" onclick="toggleMapWithLocation()">
+        
+        <!-- To Input with Autocomplete -->
+        <div class="to-input-container autocomplete">
+            <input type="text" id="to-location" class="to-input" placeholder="Select a park">
+            <div id="to-autocomplete-list" class="autocomplete-items"></div>
         </div>
-        <div class="image-box"></div>
-        <div class="input-label from">From: </div>
-        <div class="input-label to">To:</div>
-        <div class="input-label passengers">Number of Passengers :</div>
-        <div class="input-label start-date">Start Date:</div>
-        <div class="input-label end-date">End Date:</div>
-        <div class="input-box from">
-            <input type="text" id="from" placeholder="Your Location" style="border: none; background: transparent; outline: none; width: 100%;">
+        
+        <!-- Passenger Controls -->
+        <div class="passenger-controls">
+            <div class="minus-btn" onclick="adjustPassengers(-1)">-</div>
+            <div class="passenger-count" id="passenger-count">0</div>
+            <div class="plus-btn" onclick="adjustPassengers(1)">+</div>
         </div>
-        <div class="input-box to">
-            <input type="text" id="to" placeholder="Algonquin Park" style="border: none; background: transparent; outline: none; width: 100%;">
+        
+        <!-- Date Inputs -->
+        <input type="date" class="date-input start-date" id="start-date">
+        <input type="date" class="date-input end-date" id="end-date">
+        
+        <!-- Search Button -->
+        <div class="search-btn" onclick="validateAndSearch()">Search</div>
+        
+        <!-- Map Modal -->
+        <div class="map-modal" id="map-modal">
+            <button class="close-map" onclick="hideMap()">×</button>
+            <div id="location-map"></div>
         </div>
-        <div class="input-box start-date">
-            <input type="date" id="start-date" class="date-input">
-        </div>
-        <div class="input-box end-date">
-            <input type="date" id="end-date" class="date-input">
-        </div>
-        <div class="passenger-control minus" onclick="updatePassengerCount(-1)"></div>
-        <div class="passenger-control plus" onclick="updatePassengerCount(1)"></div>
-        <div class="passenger-control-text minus">-</div>
-        <div class="passenger-control-text plus">+</div>
-        <div class="passenger-count" id="passenger-count">1</div>
-        <div class="location-icon">
-            <div class="location-icon-inner"></div>
-        </div>
-        <div class="search-button" onclick="redirectToConfirmRide()">
-            <div class="search-button-text">SEARCH</div>
-        </div>
-        <div class="footer-icons">
-            <div class="footer-icon" title="Home" onclick="window.location.href='index.html'">🏠</div>
-            <div class="footer-icon" title="Communication" onclick="window.location.href='communication.html'">📞</div>
-            <div class="footer-icon" title="Calendar" onclick="window.location.href='calendar.html'">📅</div>
-            <div class="footer-icon" title="User" onclick="window.location.href='profile.html'">👤</div>
+        
+        <!-- Navigation Bar -->
+        <div class="navbar">
+            <div class="nav-divider"></div>
+            <div class="nav-icons">
+                <img class="nav-icon" src="images/Home.png" alt="Home" onclick="window.location.href='index.html'">
+                <img class="nav-icon" src="images/Calendar Plus.png" alt="Book" onclick="window.location.href='book.html'">
+                <img class="nav-icon" src="images/Collaboration.png" alt="Social Hub" onclick="window.location.href='social-hub.html'">
+                <img class="nav-icon" src="images/User.png" alt="Profile" onclick="window.location.href='profile.html'">
+            </div>
+            <div class="nav-label home-label">Home</div>
+            <div class="nav-label book-label">Book</div>
+            <div class="nav-label social-label">Social Hub</div>
+            <div class="nav-label profile-label">Profile</div>
         </div>
     </div>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        let passengerCount = 1;
+        let passengerCount = 0;
+        let map;
+        let currentMarker;
+        let geocodeTimeout;
+        let isMapVisible = false;
+        
+        // List of Canadian National Parks
+        const canadianParks = [
+            "Algonquin Provincial Park",
+            "Banff National Park",
+            "Bruce Peninsula National Park",
+            "Cape Breton Highlands National Park",
+            "Elk Island National Park",
+            "Forillon National Park",
+            "Fundy National Park",
+            "Georgian Bay Islands National Park",
+            "Glacier National Park",
+            "Grasslands National Park",
+            "Gros Morne National Park",
+            "Gwaii Haanas National Park",
+            "Ivvavik National Park",
+            "Jasper National Park",
+            "Kejimkujik National Park",
+            "Kluane National Park",
+            "Kootenay National Park",
+            "La Mauricie National Park",
+            "Mount Revelstoke National Park",
+            "Nahanni National Park",
+            "Pacific Rim National Park",
+            "Point Pelee National Park",
+            "Prince Albert National Park",
+            "Prince Edward Island National Park",
+            "Pukaskwa National Park",
+            "Quttinirpaaq National Park",
+            "Riding Mountain National Park",
+            "Rouge National Urban Park",
+            "Sirmilik National Park",
+            "Terra Nova National Park",
+            "Thousand Islands National Park",
+            "Torngat Mountains National Park",
+            "Tuktut Nogait National Park",
+            "Ukkusiksalik National Park",
+            "Vuntut National Park",
+            "Wapusk National Park",
+            "Waterton Lakes National Park",
+            "Wood Buffalo National Park",
+            "Yoho National Park"
+        ];
 
-        function updatePassengerCount(change) {
+        // Initialize the map
+        function initMap() {
+            if (!map) {
+                map = L.map('location-map').setView([0, 0], 2);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+            }
+            return map;
+        }
+        
+        // Toggle map visibility and show current location
+        function toggleMapWithLocation() {
+            const modal = document.getElementById('map-modal');
+            isMapVisible = !isMapVisible;
+            modal.style.display = isMapVisible ? 'block' : 'none';
+            
+            if (isMapVisible) {
+                initMap();
+                showCurrentLocation();
+            }
+        }
+        
+        // Show current location on the map
+        function showCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    position => {
+                        const { latitude, longitude } = position.coords;
+                        if (map) {
+                            map.setView([latitude, longitude], 15);
+                            
+                            // Remove previous marker if exists
+                            if (currentMarker) {
+                                map.removeLayer(currentMarker);
+                            }
+                            
+                            // Add new marker
+                            currentMarker = L.marker([latitude, longitude]).addTo(map)
+                                .bindPopup('Your current location')
+                                .openPopup();
+                            
+                            // Reverse geocode to get address
+                            fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
+                                .then(response => response.json())
+                                .then(data => {
+                                    const address = data.display_name || 'Your current location';
+                                    document.getElementById('from-location').value = address;
+                                });
+                        }
+                    },
+                    error => {
+                        console.error('Error getting location:', error);
+                        alert('Could not get your location. Please make sure location services are enabled.');
+                    }
+                );
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+        
+        // Geocode the address and update the map
+        function geocodeAddress(address) {
+            if (!address || address.trim() === '' || !isMapVisible) return;
+            
+            clearTimeout(geocodeTimeout);
+            geocodeTimeout = setTimeout(() => {
+                fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data && data.length > 0 && map) {
+                            const firstResult = data[0];
+                            const lat = parseFloat(firstResult.lat);
+                            const lon = parseFloat(firstResult.lon);
+                            
+                            map.setView([lat, lon], 15);
+                            
+                            // Remove previous marker if exists
+                            if (currentMarker) {
+                                map.removeLayer(currentMarker);
+                            }
+                            
+                            // Add new marker
+                            currentMarker = L.marker([lat, lon]).addTo(map)
+                                .bindPopup(address)
+                                .openPopup();
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Geocoding error:', error);
+                    });
+            }, 1000); // 1 second delay after typing stops
+        }
+        
+        function hideMap() {
+            isMapVisible = false;
+            document.getElementById('map-modal').style.display = 'none';
+        }
+        
+        function adjustPassengers(change) {
             passengerCount += change;
-            if (passengerCount < 1) passengerCount = 1; // Ensure count doesn't go below 1
+            if (passengerCount < 0) passengerCount = 0;
             document.getElementById('passenger-count').textContent = passengerCount;
         }
-
-        function redirectToConfirmRide() {
-            // Get the values from the input fields
-            const from = document.getElementById('from').value;
-            const to = document.getElementById('to').value;
+        
+        function validateAndSearch() {
+            const fromLocation = document.getElementById('from-location').value;
+            const toLocation = document.getElementById('to-location').value;
+            const passengers = document.getElementById('passenger-count').textContent;
             const startDate = document.getElementById('start-date').value;
             const endDate = document.getElementById('end-date').value;
-
-            // Redirect to the Confirm Ride page with query parameters
-            window.location.href = `confirm-ride.html?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&startDate=${encodeURIComponent(startDate)}&endDate=${encodeURIComponent(endDate)}`;
+            
+            if (!fromLocation || !toLocation || !startDate || !endDate) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            // Create URL with search parameters
+            const searchUrl = `search-results.html?from=${encodeURIComponent(fromLocation)}&to=${encodeURIComponent(toLocation)}&passengers=${passengers}&start=${startDate}&end=${endDate}`;
+            
+            window.location.href = searchUrl;
         }
+        
+        // Autocomplete functionality for parks
+        function initAutocomplete() {
+            const toInput = document.getElementById("to-location");
+            const autocompleteList = document.getElementById("to-autocomplete-list");
+            let currentFocus = -1;
+
+            toInput.addEventListener("input", function() {
+                const val = this.value;
+                autocompleteList.innerHTML = "";
+                currentFocus = -1;
+                
+                if (!val) {
+                    autocompleteList.style.display = "none";
+                    return;
+                }
+
+                // Filter parks that match the input
+                const matches = canadianParks.filter(park => 
+                    park.toLowerCase().includes(val.toLowerCase())
+                );
+
+                // Create dropdown items
+                matches.forEach(park => {
+                    const item = document.createElement("div");
+                    item.innerHTML = park;
+                    item.addEventListener("click", function() {
+                        toInput.value = park;
+                        autocompleteList.innerHTML = "";
+                        autocompleteList.style.display = "none";
+                    });
+                    autocompleteList.appendChild(item);
+                });
+
+                autocompleteList.style.display = matches.length ? "block" : "none";
+            });
+
+            toInput.addEventListener("keydown", function(e) {
+                const items = autocompleteList.getElementsByTagName("div");
+                
+                if (e.keyCode === 40) { // Down arrow
+                    currentFocus++;
+                    addActive(items);
+                } else if (e.keyCode === 38) { // Up arrow
+                    currentFocus--;
+                    addActive(items);
+                } else if (e.keyCode === 13) { // Enter
+                    e.preventDefault();
+                    if (currentFocus > -1 && items.length) {
+                        items[currentFocus].click();
+                    }
+                }
+            });
+
+            function addActive(items) {
+                if (!items.length) return false;
+                removeActive(items);
+                if (currentFocus >= items.length) currentFocus = 0;
+                if (currentFocus < 0) currentFocus = items.length - 1;
+                items[currentFocus].classList.add("autocomplete-active");
+            }
+
+            function removeActive(items) {
+                for (let i = 0; i < items.length; i++) {
+                    items[i].classList.remove("autocomplete-active");
+                }
+            }
+
+            // Close the dropdown when clicking outside
+            document.addEventListener("click", function(e) {
+                if (e.target !== toInput) {
+                    autocompleteList.innerHTML = "";
+                    autocompleteList.style.display = "none";
+                }
+            });
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initAutocomplete();
+            
+            // Set minimum date to today for date inputs
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('start-date').min = today;
+            document.getElementById('end-date').min = today;
+            
+            // Update end date min when start date changes
+            document.getElementById('start-date').addEventListener('change', function() {
+                document.getElementById('end-date').min = this.value;
+            });
+            
+            // Set initial passenger count
+            document.getElementById('passenger-count').textContent = passengerCount;
+            
+            const locationInput = document.getElementById('from-location');
+            
+            locationInput.addEventListener('input', function() {
+                geocodeAddress(this.value);
+            });
+            
+            locationInput.addEventListener('focus', function() {
+                if (!isMapVisible) {
+                    toggleMapWithLocation();
+                }
+            });
+        });
     </script>
 </body>
 </html>

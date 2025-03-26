@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Confirmation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        .container {
+            width: 393px;
+            height: 852px;
+            position: relative;
+            background: white;
+            overflow: hidden;
+        }
+        
+        .header {
+            width: 393px;
+            height: 142px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #2F75BB;
+        }
+        
+        .header-title {
+            position: absolute;
+            left: 111px;
+            top: 93px;
+            color: white;
+            font-size: 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .confirmation-image {
+            width: 300px;
+            height: 138px;
+            position: absolute;
+            left: 47px;
+            top: 401px;
+            border-radius: 9px;
+            object-fit: cover;
+        }
+        
+        .contact-info {
+            width: 243px;
+            position: absolute;
+            left: 75px;
+            top: 561px;
+            text-align: center;
+            color: black;
+            font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+        
+        .request-sent {
+            position: absolute;
+            left: 78px;
+            top: 187px;
+            color: black;
+            font-size: 18px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 600;
+        }
+        
+        .payment-status {
+            position: absolute;
+            left: 131px;
+            top: 235px;
+            color: black;
+            font-size: 14px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+        }
+        
+        .checkmark-icon {
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            left: 185px;
+            top: 224px;
+        }
+        
+        .checkmark-inner {
+            width: 18px;
+            height: 16px;
+            position: absolute;
+            left: 3px;
+            top: 5px;
+            background: white;
+        }
+        
+        .success-icon {
+            width: 90px;
+            height: 90px;
+            position: absolute;
+            left: 152px;
+            top: 277px;
+        }
+        
+        .view-booking-btn {
+            width: 301px;
+            height: 37px;
+            position: absolute;
+            left: 46px;
+            top: 704px;
+            background: #028A61;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 18px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        
+        .return-home-btn {
+            width: 176px;
+            height: 37px;
+            position: absolute;
+            left: 109px;
+            top: 639px;
+            background: #2F75BB;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 18px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        
+        /* Navigation Bar */
+        .navbar {
+            width: 393px;
+            height: 62px;
+            position: absolute;
+            left: 0;
+            top: 754px;
+        }
+        
+        .nav-divider {
+            width: 100%;
+            height: 0;
+            border-top: 0.2px solid #7E7B7B;
+        }
+        
+        .nav-icons {
+            position: absolute;
+            left: 40px;
+            top: 15px;
+            display: flex;
+            gap: 64px;
+        }
+        
+        .nav-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+        
+        .nav-label {
+            position: absolute;
+            color: black;
+            font-size: 12px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+        }
+        
+        .home-label {
+            left: 37px;
+            top: 48px;
+        }
+        
+        .book-label {
+            left: 134px;
+            top: 48px;
+        }
+        
+        .social-label {
+            left: 216px;
+            top: 48px;
+        }
+        
+        .profile-label {
+            left: 320px;
+            top: 48px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header"></div>
+        <div class="header-title">Confirmation</div>
+        
+        <!-- Confirmation Content -->
+        <div class="request-sent">Your request has been sent!</div>
+        
+        <!-- Checkmark Icon -->
+        <div class="checkmark-icon">
+            <div class="checkmark-inner"></div>
+        </div>
+        
+        <div class="payment-status">payment is pending!</div>
+        
+        <!-- Success Icon -->
+        <img class="success-icon" src="images/check.png" alt="Success">
+        
+        <!-- Confirmation Image -->
+        <img class="confirmation-image" src="images/confirm.png" alt="Booking">
+        
+        <!-- Contact Info -->
+        <div class="contact-info">
+            Contact Info: John<br/>
+            Phone #: (416) - 123 - 4567<br/>
+            username: john_explorer
+        </div>
+        
+        <!-- Return Home Button -->
+        <div class="return-home-btn" onclick="window.location.href='index.html'">
+            Return Home
+        </div>
+        
+        <!-- View Booking Button -->
+        <div class="view-booking-btn" onclick="window.location.href='profile.html'">
+            View Booking in Profile
+        </div>
+        
+        <!-- Navigation Bar -->
+        <div class="navbar">
+            <div class="nav-divider"></div>
+            <div class="nav-icons">
+                <img class="nav-icon" src="images/Home.png" alt="Home" onclick="window.location.href='index.html'">
+                <img class="nav-icon" src="images/Calendar Plus.png" alt="Book" onclick="window.location.href='book.html'">
+                <img class="nav-icon" src="images/Collaboration.png" alt="Social Hub" onclick="window.location.href='social-hub.html'">
+                <img class="nav-icon" src="images/User.png" alt="Profile" onclick="window.location.href='profile.html'">
+            </div>
+            <div class="nav-label home-label">Home</div>
+            <div class="nav-label book-label">Book</div>
+            <div class="nav-label social-label">Social Hub</div>
+            <div class="nav-label profile-label">Profile</div>
+        </div>
+    </div>
+</body>
+</html>

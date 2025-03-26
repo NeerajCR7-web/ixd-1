@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ontario Parks Social Hub</title>
+    <!-- Import Montserrat and Raleway fonts from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Raleway&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Raleway', sans-serif; /* Default font for the page */
             background: white;
             display: flex;
             justify-content: center;
@@ -27,34 +29,13 @@
             top: 96px;
             text-align: center;
             color: black;
-            font-size: 34px;
-            font-weight: 400;
+            font-family: 'Montserrat', sans-serif; /* Montserrat for the main heading */
+            font-size: 34px; /* Font size for the main heading */
+            font-weight: 500; /* Medium weight for the main heading */
         }
-        .icon {
-            width: 52px;
-            height: 52px;
-            position: absolute;
-            left: 17px;
-            top: 17px;
-            background: #D9D9D9;
-        }
-        .icon-line1, .icon-line2 {
-            width: 40.80px;
-            height: 32px;
-            position: absolute;
-            outline: 1px black solid;
-            outline-offset: -0.50px;
-        }
-        .icon-line1 {
-            transform: rotate(45deg);
-            top: 17.52px;
-            left: 39.63px;
-        }
-        .icon-line2 {
-            transform: rotate(135deg);
-            top: 39.63px;
-            left: 68.48px;
-        }
+       
+        
+        
         .footer-icons {
             display: flex;
             justify-content: space-between;
@@ -68,6 +49,7 @@
             height: 45px;
             overflow: hidden;
             position: relative;
+            border-radius: 9px; /* Corner radius for footer icons */
         }
         .footer-icon-inner {
             position: absolute;
@@ -100,11 +82,11 @@
         .content-box {
             position: absolute;
             background: rgba(217, 217, 217, 0);
-            border: 1px rgba(0, 0, 0, 0.50) solid;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
+            border-radius: 9px; /* Corner radius for all content boxes */
         }
         .content-box.large {
             width: 304px;
@@ -121,8 +103,9 @@
         .content-text {
             text-align: center;
             color: black;
-            font-size: 18px;
-            font-weight: 700;
+            font-family: 'Raleway', sans-serif; /* Raleway for text in div boxes */
+            font-size: 15px; /* Font size for text in div boxes */
+            font-weight: 400; /* Regular weight for text in div boxes */
         }
         .image-box {
             left: 42px;
@@ -130,7 +113,14 @@
         }
         .upcoming-trip-box {
             left: 42px;
-            top: 378px;
+            top: 370px;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: #8B4513; /* Darker brown background */
+            height: 114px; /* Same height as Tips */
+            padding-bottom: 0.1px;
+            padding-right:0.1px;
         }
         .tips-box {
             left: 221px;
@@ -138,15 +128,88 @@
         }
         .car-sharing-box {
             left: 42px;
-            top: 511px;
+            top: 506px;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: #FFFFE0; /* Light yellow background */
+            height: 114px; /* Same height as Rush Camping */
+            padding-bottom: 0.1px;
+            padding-right:0.1px;
         }
         .rush-camping-box {
             left: 221px;
             top: 511px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative; /* For positioning text on top of the logo */
         }
         .social-hub-box {
-            left: 42px;
+            left: 32px;
             top: 644px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Space between text and logo */
+            padding: 10px; /* Add padding for spacing */
+            background: #E6E6FA; /* Light purple background */
+            
+        }
+        .content-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 9px; /* Corner radius for images */
+        }
+        .upcoming-trip-box img {
+            width: 60px; /* Enlarged logo size */
+            height: 60px; /* Enlarged logo size */
+            margin-right: 10px; /* Space between logo and text */
+            object-fit: contain; /* Ensure the logo is not cut */
+        }
+        .upcoming-trip-box .content-text {
+            text-align: left; /* Align text to the left */
+            font-size: 15px; /* Adjust font size if needed */
+            color: white; /* White text for better contrast */
+        }
+        .car-sharing-box img {
+            width: 60px; /* Logo size */
+            height: 60px; /* Logo size */
+            margin-right: 10px; /* Space between logo and text */
+            object-fit: contain; /* Ensure the logo is not cut */
+        }
+        .car-sharing-box .content-text {
+            text-align: left; /* Align text to the left */
+            font-size: 15px; /* Adjust font size if needed */
+            color: black; /* Black text */
+        }
+        .rush-camping-box img {
+            width: 100%; /* Full width of the div */
+            height: 100%; /* Full height of the div */
+            object-fit: cover; /* Ensure the logo covers the div */
+            border-radius: 9px; /* Corner radius for the logo */
+        }
+        .rush-camping-box .content-text {
+            position: absolute; /* Position text on top of the logo */
+            top: 10px; /* Adjust top position */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Center horizontally */
+            color: white; /* White text for better contrast */
+            font-size: 15px; /* Adjust font size if needed */
+            font-weight: 400; /* Regular weight for text in div boxes */
+            text-align: center; /* Center text */
+        }
+        .social-hub-box img {
+            width: 120px; /* Slightly larger logo size */
+            height: 120px; /* Slightly larger logo size */
+            object-fit: contain; /* Ensure the logo is not cut */
+        }
+        .social-hub-box .content-text {
+            text-align: left; /* Align text to the left */
+            font-size: 15px; /* Adjust font size if needed */
+            color: black; /* Black text */
+            font-weight: 400; /* Regular weight for text in div boxes */
         }
     </style>
 </head>
@@ -155,39 +218,28 @@
         <div class="welcome-text">Welcome to <br/>Ontario Parks<br/>Social Hub </div>
         <div class="icon">
             <div class="icon-line1"></div>
-            <div class="icon-line2"></div>
         </div>
         <div class="content-box large image-box">
-            <div class="content-text">Image</div>
+            <img src="images/image1.png" alt="Image">
         </div>
         <div class="content-box small upcoming-trip-box">
-            <div class="content-text">Upcoming<br/>Car Sharing <br/>Trip</div>
+            <img src="images/upcoming-trip.png" alt="Upcoming Trip Logo">
+            <div class="content-text">Upcoming<br/>Car Sharing<br/>Trip</div>
         </div>
         <div class="content-box tips tips-box">
-            <div class="content-text">TIPS</div>
+            <img src="images/tips.png" alt="Tips">
         </div>
         <div class="content-box small car-sharing-box" onclick="window.location.href='car-sharing.html'">
+            <img src="images/car-sharing.png" alt="Car Sharing">
             <div class="content-text">Car Sharing</div>
         </div>
         <div class="content-box tips rush-camping-box">
-            <div class="content-text">Rush<br/>Camping</div>
+            <img src="images/rush-camping.png" alt="Rush Camping">
+            <div class="content-text">RUSH CAMPING</div>
         </div>
         <div class="content-box large social-hub-box">
-            <div class="content-text">Social Hub</div>
-        </div>
-        <div class="footer-icons">
-            <div class="footer-icon">
-                <div class="footer-icon-inner footer-icon1-inner"></div>
-            </div>
-            <div class="footer-icon">
-                <div class="footer-icon-inner footer-icon2-inner"></div>
-            </div>
-            <div class="footer-icon">
-                <div class="footer-icon-inner footer-icon3-inner"></div>
-            </div>
-            <div class="footer-icon">
-                <div class="footer-icon-inner footer-icon4-inner"></div>
-            </div>
+            <div class="content-text">CAMP DISCUSSION</div>
+            <img src="images/social-hub.png" alt="Social Hub">
         </div>
     </div>
 </body>

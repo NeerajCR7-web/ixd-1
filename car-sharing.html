@@ -4,172 +4,222 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Car Sharing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&family=Montserrat:wght@600&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
-            font-family: 'Inter', sans-serif;
-            background: white;
+            padding: 0;
+            font-family: 'Raleway', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
+            background-color: #f5f5f5;
         }
+        
         .container {
             width: 393px;
             height: 852px;
             position: relative;
             background: white;
             overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .header {
+        .back-text {
+    position: absolute;
+    left: 12px;
+    top: 57px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+        
+        .title {
+            left: 46px;
+            top: 367px;
             position: absolute;
-            left: 26px;
-            top: 125px;
-            display: flex;
-            align-items: center;
-            gap: 20px; /* Space between "Back" and "Car Sharing" */
-        }
-        .back-button {
-            color: black;
-            font-size: 14px;
-            font-weight: 400;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .back-button:hover {
-            text-decoration: underline;
-        }
-        .car-sharing-text {
-            color: black;
-            font-size: 34px;
-            font-weight: 400;
-        }
-        .icon {
-            width: 52px;
-            height: 52px;
-            position: absolute;
-            left: 17px;
-            top: 17px;
-            background: #D9D9D9;
-        }
-        .icon-line1, .icon-line2 {
-            width: 40.80px;
-            height: 32px;
-            position: absolute;
-            outline: 1px black solid;
-            outline-offset: -0.50px;
-        }
-        .icon-line1 {
-            transform: rotate(45deg);
-            top: 17.52px;
-            left: 39.63px;
-        }
-        .icon-line2 {
-            transform: rotate(135deg);
-            top: 39.63px;
-            left: 68.48px;
-        }
-        .footer-icons {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            padding: 0 20px;
-            position: absolute;
-            bottom: 20px;
-        }
-        .footer-icon {
-            width: 45px;
-            height: 45px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px; /* Size of the icons */
-            color: black; /* Color of the icons */
-            cursor: pointer;
-        }
-        .footer-icon:hover {
-            color: #555; /* Hover effect for icons */
-        }
-        .image-box {
-            width: 304px;
-            height: 114px;
-            position: absolute;
-            left: 41px;
-            top: 197px;
-            background: rgba(217, 217, 217, 0);
-            border: 1px rgba(0, 0, 0, 0.50) solid;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .image-text {
             color: black;
             font-size: 18px;
-            font-weight: 700;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 600;
         }
-        .what-is-car-sharing {
-            position: absolute;
-            left: 26px;
-            top: 353px;
-            color: black;
-            font-size: 18px;
-            font-weight: 700;
-        }
+        
         .description {
             width: 318px;
-            height: 123px;
+            height: 54px;
+            left: 46px;
+            top: 409px;
             position: absolute;
-            left: 26px;
-            top: 395px;
             color: black;
-            font-size: 11px;
+            font-size: 12px;
+            font-family: 'Raleway', sans-serif;
             font-weight: 400;
         }
-        .search-button {
-            width: 199px;
-            height: 28px;
+        
+        .car-image {
+            width: 304px;
+            height: 114px;
+            left: 45px;
+            top: 203px;
             position: absolute;
-            left: 94px;
-            top: 557px;
-            background: #D9D9D9;
             border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            object-fit: cover;
+        }
+        
+        .search-button {
+            width: 182px;
+            height: 37px;
+            left: 99px;
+            top: 555px;
+            position: absolute;
             cursor: pointer;
         }
-        .search-button-text {
-            color: black;
-            font-size: 14px;
+        
+        .button-bg {
+            width: 182px;
+            height: 37px;
+            background: #2F75BB;
+            border-radius: 6px;
+        }
+        
+        .button-text {
+            left: 32px;
+            top: 7px;
+            position: absolute;
+            color: white;
+            font-size: 18px;
+            font-family: 'Raleway', sans-serif;
             font-weight: 400;
+        }
+        
+        .navbar {
+            width: 393px;
+            height: 62px;
+            left: 0px;
+            top: 754px;
+            position: absolute;
+        }
+        
+        .nav-icons {
+            left: 40px;
+            top: 15px;
+            position: absolute;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 64px;
+            display: inline-flex;
+        }
+        
+        .nav-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+        
+        .nav-label {
+            position: absolute;
+            color: black;
+            font-size: 12px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+        }
+        
+        .home-label {
+            left: 37px;
+            top: 48px;
+        }
+        
+        .book-label {
+            left: 134px;
+            top: 48px;
+        }
+        
+        .social-label {
+            left: 216px;
+            top: 48px;
+        }
+        
+        .profile-label {
+            left: 320px;
+            top: 48px;
+        }
+        
+        .nav-divider {
+            width: 393px;
+            height: 0px;
+            outline: 0.20px #7E7B7B solid;
+            outline-offset: -0.10px;
+        }
+        
+        .header {
+            width: 393px;
+            height: 142px;
+            left: 0px;
+            top: 0px;
+            position: absolute;
+            background: #2F75BB;
+        }
+        
+        .header-title {
+            left: 121px;
+            top: 93px;
+            position: absolute;
+            color: white;
+            font-size: 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .back-text {
+            left: 32px;
+            top: 61px;
+            position: absolute;
+            color: white;
+            font-size: 14px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+        }
+        
+        .back-icon {
+            width: 25px;
+            height: 25px;
+            left: 12px;
+            top: 57px;
+            position: absolute;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <a href="index.html" class="back-button">Back</a>
-            <div class="car-sharing-text">Car Sharing</div>
+        <div class="header"></div>
+        <h1 class="header-title">Car Sharing</h1>
+        <p class="back-text" onclick="window.location.href='index.html'"> Back </p>
+        <div class="back-icon" src="images/Back.png"></div>
+
+        
+        <img class="car-image" src="images/car-sharing (2).png" alt="Car sharing">
+        
+        <h2 class="title">What is Car Sharing?</h2>
+        <p class="description">Car sharing feature provides transportation opportunities for campers who don't have access to a car.</p>
+        
+        <div class="search-button">
+            <div class="button-bg"></div>
+            <div class="button-text" onclick="window.location.href='search-ride.html'">search for ride</div>
         </div>
-        <div class="icon">
-            <div class="icon-line1"></div>
-            <div class="icon-line2"></div>
-        </div>
-        <div class="image-box">
-            <div class="image-text">Image</div>
-        </div>
-        <div class="what-is-car-sharing">What is Car Sharing?</div>
-        <div class="description">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla
-        </div>
-        <div class="search-button" onclick="window.location.href='search-ride.html'">
-            <div class="search-button-text">SEARCH FOR RIDE</div>
-        </div>
-        <div class="footer-icons">
-            <div class="footer-icon" title="Home" onclick="window.location.href='index.html'">🏠</div>
-            <div class="footer-icon" title="Communication" onclick="window.location.href='communication.html'">📞</div>
-            <div class="footer-icon" title="Calendar" onclick="window.location.href='calendar.html'">📅</div>
-            <div class="footer-icon" title="User" onclick="window.location.href='profile.html'">👤</div>
+        
+        <div class="navbar">
+            <div class="nav-divider"></div>
+            <div class="nav-icons">
+                <img class="nav-icon" src="images/Home.png" alt="Home" onclick="window.location.href='index.html'">
+                <img class="nav-icon" src="images/Calendar Plus.png" alt="Book">
+                <img class="nav-icon" src="images/Collaboration.png" alt="Social Hub">
+                <img class="nav-icon" src="images/User.png" alt="Profile">
+            </div>
+            <div class="nav-label home-label">Home</div>
+            <div class="nav-label book-label">Book</div>
+            <div class="nav-label social-label">Social Hub</div>
+            <div class="nav-label profile-label">Profile</div>
         </div>
     </div>
 </body>

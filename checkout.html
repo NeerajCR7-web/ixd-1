@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        .container {
+            width: 393px;
+            height: 852px;
+            position: relative;
+            background: white;
+            overflow: hidden;
+        }
+        
+        .header {
+            width: 393px;
+            height: 142px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #2F75BB;
+        }
+        
+        .header-title {
+            position: absolute;
+            left: 134px;
+            top: 97px;
+            color: white;
+            font-size: 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .back-container {
+            position: absolute;
+            left: 12px;
+            top: 57px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        
+        .back-icon {
+            width: 25px;
+            height: 25px;
+        }
+        
+        .back-text {
+            color: white;
+            font-size: 14px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            position: absolute;
+            left: 32px;
+            top: 5px;
+        }
+        
+        .section-title {
+            position: absolute;
+            color: black;
+            font-size: 18px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 600;
+        }
+        
+        .contact-title {
+            left: 36px;
+            top: 189px;
+        }
+        
+        .payment-title {
+            left: 36px;
+            top: 385px;
+        }
+        
+        .form-label {
+            position: absolute;
+            color: black;
+            font-size: 14px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+        }
+        
+        .full-name-label {
+            width: 93px;
+            left: 48px;
+            top: 241px;
+        }
+        
+        .email-label {
+            width: 45px;
+            left: 210px;
+            top: 241px;
+        }
+        
+        .phone-label {
+            left: 48px;
+            top: 286px;
+        }
+        
+        .card-name-label {
+            width: 93px;
+            left: 46px;
+            top: 429px;
+        }
+        
+        .card-number-label {
+            width: 93px;
+            left: 46px;
+            top: 477px;
+        }
+        
+        .cvc-label {
+            width: 93px;
+            left: 44px;
+            top: 525px;
+        }
+        
+        .twofa-label {
+            left: 209px;
+            top: 286px;
+        }
+        
+        .booking-for-others {
+            left: 62px;
+            top: 345px;
+            color: black;
+            font-size: 12px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            position: absolute;
+        }
+        
+        .input-field {
+            position: absolute;
+            background: transparent;
+            border-radius: 6px;
+            border: 1px solid black;
+            padding: 5px;
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        .full-name-input {
+            width: 158px;
+            height: 29px;
+            left: 25px;
+            top: 235px;
+        }
+        
+        .email-input {
+            width: 158px;
+            height: 29px;
+            left: 201px;
+            top: 235px;
+        }
+        
+        .phone-input {
+            width: 158px;
+            height: 29px;
+            left: 25px;
+            top: 280px;
+        }
+        
+        .twofa-input {
+            width: 158px;
+            height: 29px;
+            left: 201px;
+            top: 280px;
+        }
+        
+        .card-name-input {
+            width: 158px;
+            height: 29px;
+            left: 36px;
+            top: 423px;
+        }
+        
+        .card-number-input {
+            width: 158px;
+            height: 29px;
+            left: 36px;
+            top: 471px;
+        }
+        
+        .cvc-input {
+            width: 69px;
+            height: 29px;
+            left: 34px;
+            top: 525px;
+        }
+        
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            left: 36px;
+            top: 340px;
+            position: absolute;
+            background: transparent;
+            border-radius: 5px;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+        
+        .pay-button {
+            width: 123px;
+            height: 33px;
+            position: absolute;
+            left: 236px;
+            top: 590px;
+            background: #028A61;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 14px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        
+        .pay-icon {
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            left: 330px;
+            top: 595px;
+        }
+        
+        /* Navigation Bar */
+        .navbar {
+            width: 393px;
+            height: 62px;
+            position: absolute;
+            left: 0;
+            top: 754px;
+        }
+        
+        .nav-divider {
+            width: 100%;
+            height: 0;
+            border-top: 0.2px solid #7E7B7B;
+        }
+        
+        .nav-icons {
+            position: absolute;
+            left: 40px;
+            top: 15px;
+            display: flex;
+            gap: 64px;
+        }
+        
+        .nav-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+        
+        .nav-label {
+            position: absolute;
+            color: black;
+            font-size: 12px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+        }
+        
+        .home-label {
+            left: 37px;
+            top: 48px;
+        }
+        
+        .book-label {
+            left: 134px;
+            top: 48px;
+        }
+        
+        .social-label {
+            left: 216px;
+            top: 48px;
+        }
+        
+        .profile-label {
+            left: 320px;
+            top: 48px;
+        }
+        
+        /* Error styling */
+        .error {
+            border-color: red !important;
+        }
+        
+        .error-message {
+            color: red;
+            font-size: 12px;
+            position: absolute;
+            font-family: 'Raleway', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header"></div>
+        <div class="header-title">Checkout</div>
+        
+        <!-- Back Button -->
+        <div class="back-container" onclick="window.history.back()">
+            <img class="back-icon" src="images/Back.png" alt="Back">
+            <div class="back-text">Back</div>
+        </div>
+        
+        <!-- Contact Information Section -->
+        <div class="section-title contact-title">Contact Information</div>
+        
+        <!-- Full Name -->
+        <input type="text" class="input-field full-name-input" id="fullName" placeholder="Full Name">
+        <div class="error-message" id="fullNameError" style="left: 36px; top: 220px;"></div>
+        
+        <!-- Email -->
+        <input type="email" class="input-field email-input" id="email" placeholder="Email">
+        <div class="error-message" id="emailError" style="left: 201px; top: 220px;"></div>
+        
+        <!-- Phone Number -->
+        <input type="tel" class="input-field phone-input" id="phone" placeholder="Phone Number">
+        <div class="error-message" id="phoneError" style="left: 36px; top: 320px;"></div>
+        
+        <!-- 2FA Code -->
+        <input type="text" class="input-field twofa-input" id="twofa" placeholder="2FA Code">
+        <div class="error-message" id="twofaError" style="left: 201px; top: 320px;"></div>
+        
+        <!-- Booking for someone else -->
+        <div class="checkbox" id="checkbox" onclick="toggleCheckbox()"></div>
+        <div class="booking-for-others">I am booking for someone else</div>
+        
+        <!-- Payment Information Section -->
+        <div class="section-title payment-title">Payment</div>
+        
+        <!-- Name on Card -->
+        <input type="text" class="input-field card-name-input" id="cardName" placeholder="Name on Card">
+        <div class="error-message" id="cardNameError" style="left: 36px; top: 410px;"></div>
+        
+        <!-- Card Number -->
+        <input type="text" class="input-field card-number-input" id="cardNumber" placeholder="Card #">
+        <div class="error-message" id="cardNumberError" style="left: 36px; top: 510px;"></div>
+        
+        <!-- CVC -->
+            <input type="text" class="input-field cvc-input" id="cvc" placeholder="CVC">
+        <div class="error-message" id="cvcError" style="left: 34px; top: 567px;"></div>
+        
+        <!-- Pay Now Button -->
+        <div class="pay-button" id="payButton">
+            Pay Now
+        </div>
+        <img class="pay-icon" src="images/Right.png" alt="Pay Now">
+        
+        <!-- Navigation Bar -->
+        <div class="navbar">
+            <div class="nav-divider"></div>
+            <div class="nav-icons">
+                <img class="nav-icon" src="images/Home.png" alt="Home" onclick="window.location.href='index.html'">
+                <img class="nav-icon" src="images/Calendar Plus.png" alt="Book" onclick="window.location.href='book.html'">
+                <img class="nav-icon" src="images/Collaboration.png" alt="Social Hub" onclick="window.location.href='social-hub.html'">
+                <img class="nav-icon" src="images/User.png" alt="Profile" onclick="window.location.href='profile.html'">
+            </div>
+            <div class="nav-label home-label">Home</div>
+            <div class="nav-label book-label">Book</div>
+            <div class="nav-label social-label">Social Hub</div>
+            <div class="nav-label profile-label">Profile</div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize placeholders and event listeners when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all input fields
+            const inputs = document.querySelectorAll('.input-field');
+            
+            // Add focus and blur event listeners to each input
+            inputs.forEach(input => {
+                // Store the placeholder text
+                const placeholder = input.placeholder;
+                
+                // When input gets focus, clear placeholder
+                input.addEventListener('focus', function() {
+                    if (this.value === placeholder) {
+                        this.value = '';
+                    }
+                });
+                
+                // When input loses focus, restore placeholder if empty
+                input.addEventListener('blur', function() {
+                    if (this.value === '') {
+                        this.value = placeholder;
+                    }
+                });
+                
+                // Initialize with placeholder text
+                input.value = input.placeholder;
+            });
+            
+            // Add click event to pay button
+            document.getElementById('payButton').addEventListener('click', validateForm);
+        });
+        
+        function toggleCheckbox() {
+            const checkbox = document.querySelector('.checkbox');
+            checkbox.style.backgroundColor = checkbox.style.backgroundColor === 'black' ? 'transparent' : 'black';
+        }
+        
+        function validateForm() {
+            // Reset all error states
+            const inputs = document.querySelectorAll('.input-field');
+            inputs.forEach(input => {
+                input.classList.remove('error');
+            });
+            
+            const errorMessages = document.querySelectorAll('.error-message');
+            errorMessages.forEach(msg => {
+                msg.textContent = '';
+            });
+            
+            // Get all input values
+            const fullName = document.getElementById('fullName');
+            const email = document.getElementById('email');
+            const phone = document.getElementById('phone');
+            const twofa = document.getElementById('twofa');
+            const cardName = document.getElementById('cardName');
+            const cardNumber = document.getElementById('cardNumber');
+            const cvc = document.getElementById('cvc');
+            
+            // Validate each field
+            let isValid = true;
+            
+            if (fullName.value === '' || fullName.value === fullName.placeholder) {
+                document.getElementById('fullNameError').textContent = 'Full name is required';
+                fullName.classList.add('error');
+                isValid = false;
+            }
+            
+            if (email.value === '' || email.value === email.placeholder) {
+                document.getElementById('emailError').textContent = 'Email is required';
+                email.classList.add('error');
+                isValid = false;
+            } else if (!validateEmail(email.value)) {
+                document.getElementById('emailError').textContent = 'Invalid email format';
+                email.classList.add('error');
+                isValid = false;
+            }
+            
+            if (phone.value === '' || phone.value === phone.placeholder) {
+                document.getElementById('phoneError').textContent = 'Phone is required';
+                phone.classList.add('error');
+                isValid = false;
+            }
+            
+            if (twofa.value === '' || twofa.value === twofa.placeholder) {
+                document.getElementById('twofaError').textContent = '2FA code is required';
+                twofa.classList.add('error');
+                isValid = false;
+            }
+            
+            if (cardName.value === '' || cardName.value === cardName.placeholder) {
+                document.getElementById('cardNameError').textContent = 'Card name is required';
+                cardName.classList.add('error');
+                isValid = false;
+            }
+            
+            if (cardNumber.value === '' || cardNumber.value === cardNumber.placeholder) {
+                document.getElementById('cardNumberError').textContent = 'Card number is required';
+                cardNumber.classList.add('error');
+                isValid = false;
+            }
+            
+            if (cvc.value === '' || cvc.value === cvc.placeholder) {
+                document.getElementById('cvcError').textContent = 'CVC is required';
+                cvc.classList.add('error');
+                isValid = false;
+            }
+            
+            // If all valid, proceed to payment confirmation
+            if (isValid) {
+                window.location.href = 'payment-confirmation.html';
+            } else {
+                // Scroll to the first error
+                const firstError = document.querySelector('.error');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        }
+        
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+    </script>
+</body>
+</html>

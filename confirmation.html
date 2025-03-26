@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        .container {
+            width: 393px;
+            height: 852px;
+            position: relative;
+            background: white;
+            overflow: hidden;
+        }
+        
+        .header {
+            width: 393px;
+            height: 142px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #2F75BB;
+        }
+        
+        .header-title {
+            position: absolute;
+            left: 28px;
+            top: 93px;
+            color: white;
+            font-size: 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .back-container {
+            position: absolute;
+            left: 12px;
+            top: 57px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        
+        .back-icon {
+            width: 25px;
+            height: 25px;
+        }
+        
+        .back-text {
+            color: white;
+            font-size: 14px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+        }
+        
+        .action-icon {
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            right: 16px;
+            top: 56px;
+        }
+        
+        .trip-details-box {
+            width: 339px;
+            height: 361px;
+            position: absolute;
+            left: 27px;
+            top: 228px;
+            border-radius: 5px;
+            border: 0.5px solid black;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        
+        .trip-section {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .divider {
+            height: 0.5px;
+            background: black;
+            margin: 15px 0;
+            width: 100%;
+        }
+        
+        .passengers-label {
+            color: black;
+            font-size: 14px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            display: inline;
+        }
+        
+        .passengers-count {
+            color: black;
+            font-size: 13px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            display: inline;
+        }
+        
+        .route-text {
+            color: black;
+            font-size: 14px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 700;
+            margin-top: 5px;
+            display: block;
+        }
+        
+        .passengers-names {
+            color: black;
+            font-size: 11px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            margin-top: 5px;
+        }
+        
+        .pickup-info {
+            color: black;
+            font-size: 14px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            margin-top: 10px;
+        }
+        
+        .pickup-time {
+            color: black;
+            font-size: 14px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 700;
+        }
+        
+        .driver-info {
+            margin-top: 10px;
+        }
+        
+        .driver-name {
+            color: black;
+            font-size: 14px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 700;
+        }
+        
+        .driver-badge {
+            color: rgba(0, 0, 0, 0.75);
+            font-size: 11px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            margin-top: 5px;
+        }
+        
+        .badge-tier {
+            font-weight: 700;
+        }
+        
+        .price-section {
+            position: absolute;
+            right: 0;
+            top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .price-divider {
+            width: 0.5px;
+            height: 100px;
+            background: black;
+        }
+        
+        .price {
+            color: black;
+            font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+        }
+        
+        .return-price {
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        .total-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+            border-top: 0.5px solid black;
+        }
+        
+        .total-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .total-label {
+            color: black;
+            font-size: 14px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 700;
+        }
+        
+        .total-price {
+            color: black;
+            font-size: 13px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .vertical-divider {
+            width: 0.5px;
+            height: 24px;
+            background: black;
+        }
+        
+        .button-container {
+            position: absolute;
+            bottom: 120px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        .button {
+            width: 122px;
+            height: 33px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 14px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        
+        .edit-btn {
+            background: #2F75BB;
+        }
+        
+        .checkout-btn {
+            background: #028A61;
+            width: 123px;
+        }
+        
+        .checkout-icon {
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            right: 40px;
+            bottom: 123px;
+        }
+        
+        /* Navigation Bar */
+        .navbar {
+            width: 393px;
+            height: 62px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            border-top: 0.2px solid #7E7B7B;
+        }
+        
+        .nav-icons {
+            position: absolute;
+            left: 40px;
+            top: 15px;
+            display: flex;
+            gap: 64px;
+        }
+        
+        .nav-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+        
+        .nav-label {
+            position: absolute;
+            color: black;
+            font-size: 12px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+        }
+        
+        .home-label {
+            left: 37px;
+            top: 48px;
+        }
+        
+        .book-label {
+            left: 134px;
+            top: 48px;
+        }
+        
+        .social-label {
+            left: 216px;
+            top: 48px;
+        }
+        
+        .profile-label {
+            left: 320px;
+            top: 48px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header"></div>
+        <h1 class="header-title">Car Sharing Trip Summary</h1>
+        
+        <!-- Back Button -->
+        <div class="back-container" onclick="window.history.back()">
+            <img class="back-icon" src="images/Back.png" alt="Back">
+            <div class="back-text">Back</div>
+        </div>
+        
+        
+        <!-- Trip Details Box -->
+        <div class="trip-details-box">
+            <!-- Departure Section -->
+            <div class="trip-section">
+                <div style="position: relative;">
+                    <div style="width: 240px;">
+                        <span class="passengers-label">Departure | June </span>
+                        <span class="passengers-count">12 2025</span>
+                        <span class="passengers-label">:</span>
+                        <div class="route-text">Toronto, ON > Algonquin Park</div>
+                    </div>
+                    <div class="price-section">
+                        <div class="price-divider"></div>
+                        <div class="price">$25.00</div>
+                    </div>
+                </div>
+                
+                <div class="passengers-names">
+                    John Smith<br/>Alex Green
+                </div>
+                
+                <div class="pickup-info">
+                    <span>Pick Up in Toronto: </span>
+                    <span class="pickup-time">TBA</span>
+                </div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <!-- Return Section -->
+            <div class="trip-section">
+                <div style="position: relative;">
+                    <div style="width: 240px;">
+                        <span class="passengers-label">Return | June </span>
+                        <span class="passengers-count">15 2025</span>
+                        <span class="passengers-label">:</span>
+                        <div class="route-text">Algonquin Park > Toronto, ON</div>
+                    </div>
+                    <div class="price-section">
+                        <div class="price-divider"></div>
+                        <div class="price return-price">$40.00</div>
+                    </div>
+                </div>
+                
+                <div class="passengers-names">
+                    John Smith<br/>Alex Green
+                </div>
+                
+                <div class="pickup-info">
+                    <span>Pick Up in Algonquin Park: </span>
+                    <span class="passengers-count" style="font-weight: 700;">2</span>
+                    <span class="pickup-time"> pm</span>
+                </div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <!-- Driver Section -->
+            <div class="driver-info">
+                <div>
+                    <span class="passengers-label">Name of Driver: </span>
+                    <span class="driver-name">John</span>
+                </div>
+                <div class="driver-badge">
+                    Badge Tier/# Rides Given:<br/>
+                    <span class="badge-tier">Ultimate Camper/12 rides given</span>
+                </div>
+            </div>
+            
+            <!-- Total Section -->
+            <div class="total-section">
+                <div class="total-container">
+                    <div class="total-label">Total</div>
+                    <div class="vertical-divider"></div>
+                </div>
+                <div class="total-price">$65.00</div>
+            </div>
+        </div>
+        
+        <!-- Buttons -->
+        <div class="button-container">
+            <div class="button edit-btn" onclick="window.location.href='search-ride.html'">Edit Booking</div>
+            <div class="button checkout-btn" onclick="window.location.href='checkout.html'">Checkout</div>
+        </div>
+        <img class="checkout-icon" src="images/Right.png"Checkout">
+        
+        <!-- Navigation Bar -->
+        <div class="navbar">
+            <div class="nav-icons">
+                <img class="nav-icon" src="images/Home.png" alt="Home" onclick="window.location.href='index.html'">
+                <img class="nav-icon" src="images/Calendar Plus.png" alt="Book" onclick="window.location.href='book.html'">
+                <img class="nav-icon" src="images/Collaboration.png" alt="Social Hub" onclick="window.location.href='social-hub.html'">
+                <img class="nav-icon" src="images/User.png" alt="Profile" onclick="window.location.href='profile.html'">
+            </div>
+            <div class="nav-label home-label">Home</div>
+            <div class="nav-label book-label">Book</div>
+            <div class="nav-label social-label">Social Hub</div>
+            <div class="nav-label profile-label">Profile</div>
+        </div>
+    </div>
+</body>
+</html>

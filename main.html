@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            width: 393px;
+            height: 852px;
+            position: relative;
+            background: #9F81BB;
+            overflow: hidden;
+        }
+        
+        .title {
+            left: 96px;
+            top: 396px;
+            position: absolute;
+            color: white;
+            font-size: 20px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 1px;
+            line-height: 1.4;
+        }
+        
+        .logo {
+            width: 127px;
+            height: 112px;
+            left: 210px;
+            top: 359px;
+            position: absolute;
+            cursor: pointer; /* Changes cursor to indicate clickability */
+        }
+    </style>
+    <!-- Load Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="title">Ontario <br/>Parks<br/>Social Hub</div>
+        
+        <!-- Clickable logo that redirects to index.html -->
+        <a href="index.html">
+            <img class="logo" src="images/social-hub.png" alt="Ontario Parks Social Hub Logo">
+        </a>
+    </div>
+</body>
+</html>
