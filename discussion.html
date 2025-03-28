@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camp Discussion</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&family=Montserrat:wght@400;600&family=Inter:wght@400&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        .container {
+            width: 393px;
+            height: auto;
+            min-height: 852px;
+            position: relative;
+            background: white;
+            overflow: hidden;
+            margin: 0 auto;
+            padding-bottom: 100px;
+        }
+        
+        .header {
+            width: 393px;
+            height: 142px;
+            background: #9F81BB;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .back-button {
+            position: absolute;
+            left: 32px;
+            top: 61px;
+            color: white;
+            font-size: 14px;
+            font-weight: 400;
+            cursor: pointer;
+        }
+        
+        .back-icon {
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            left: 12px;
+            top: 57px;
+            cursor: pointer;
+        }
+        
+        .title {
+            position: absolute;
+            left: 85px;
+            top: 93px;
+            color: white;
+            font-size: 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .action-button {
+            width: 144px;
+            height: 37px;
+            position: absolute;
+            left: 234px;
+            top: 52px;
+            background: #9F81BB;
+            border-radius: 6px;
+        }
+        
+        .category-boxes {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            width: 303px;
+            left: 45px;
+            top: 165px;
+        }
+        
+        .category-box {
+            width: 84px;
+            height: 89px;
+            border-radius: 9px;
+        }
+        
+        .category-1 {
+            background: #028A61;
+        }
+        
+        .category-2 {
+            background: #9F81BB;
+            margin: 0 20px;
+        }
+        
+        .category-3 {
+            background: #D3A32A;
+        }
+        
+        .category-label {
+            position: absolute;
+            text-align: center;
+            color: black;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+        
+        .label-1 {
+            left: 53px;
+            top: 264px;
+        }
+        
+        .label-2 {
+            left: 143px;
+            top: 264px;
+        }
+        
+        .label-3 {
+            left: 273px;
+            top: 261px;
+        }
+        
+        .section-title {
+            position: absolute;
+            color: black;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .previous-questions {
+            width: 283px;
+            left: 35px;
+            top: 355px;
+        }
+        
+        .question {
+            position: absolute;
+            color: black;
+            font-size: 18px;
+            font-weight: 600;
+            width: 329px;
+            left: 37px;
+        }
+        
+        .question-content {
+            position: absolute;
+            color: black;
+            font-size: 12px;
+            font-weight: 400;
+            width: 318px;
+            left: 38px;
+        }
+        
+        .divider {
+            width: 389px;
+            height: 0px;
+            left: 4px;
+            position: absolute;
+            border-top: 1px solid #8C8888;
+        }
+        
+        .user-info {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .username {
+            color: black;
+            font-size: 13px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+        }
+        
+        .time {
+            color: rgba(0, 0, 0, 0.50);
+            font-size: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            position: relative;
+    left: 80px;
+        }
+        
+        .action-bar {
+            display: flex;
+            position: absolute;
+            left: 113px;
+        }
+        
+        .action-button-small {
+            height: 15px;
+            background: #D3A32A;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            margin-right: 10px;
+            color: white;
+            font-size: 8px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .vote-arrow {
+            cursor: pointer;
+            width: 10px;
+            height: 10px;
+            margin: 0 2px;
+        }
+        
+        .footer {
+            width: 393px;
+            height: 62px;
+            position: absolute;
+            left: 0;
+            border-top: 0.2px solid #7E7B7B;
+        }
+        
+        .footer-icons {
+            position: absolute;
+            left: 40px;
+            top: 15px;
+            display: flex;
+            gap: 64px;
+        }
+        
+        .footer-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+        
+        .footer-labels {
+            position: absolute;
+            left: 37px;
+            top: 48px;
+            display: flex;
+            gap: 64px;
+            color: black;
+            font-size: 12px;
+            font-weight: 400;
+        }
+        
+        .create-post {
+            width: 233px;
+            height: 37px;
+            position: absolute;
+            left: 80px;
+            top: 307px;
+            background: #9F81BB;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        
+        .user-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #D3A32A;
+            position: absolute;
+            top: 5px;
+        }
+        
+        .user-badge {
+            position: absolute;
+            text-align: center;
+            color: black;
+            font-size: 6px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+        }
+        
+        .badge-icon {
+            position: absolute;
+        }
+        
+        .post-container {
+            position: relative;
+            margin-bottom: 60px;
+        }
+        
+        .delete-button {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        
+        .delete-button:hover {
+            background: #cc0000;
+        }
+        
+        /* New styles for attachments */
+        .attachments-container {
+            position: absolute;
+            left: 38px;
+            width: 318px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 5px 0;
+        }
+        
+        .attachment-item {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid #eee;
+            cursor: pointer;
+        }
+        
+        .attachment-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .attachment-file {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #f5f5f5;
+            font-size: 24px;
+        }
+        
+        .file-name {
+            font-size: 10px;
+            text-align: center;
+            word-break: break-all;
+            padding: 2px;
+        }
+        
+        /* Document viewer modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow: auto;
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: 700px;
+            max-height: 90%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .modal-image {
+            width: 100%;
+            height: auto;
+        }
+        
+        .modal-file {
+            width: 100%;
+            height: 80vh;
+            border: none;
+        }
+        
+        .file-viewer {
+            width: 100%;
+            height: 80vh;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .file-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        
+        .download-btn {
+            padding: 10px 20px;
+            background: #9F81BB;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: #bbb;
+        }
+        .back-text {
+            color: white;
+            font-size: 14px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            position: absolute;
+            top: 62px;
+            left: 30px;    
+            cursor: pointer;
+        }
+        
+        /* New comment styles */
+        .comment-section {
+            position: relative;
+            left: 38px;
+            width: 318px;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .comment-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-bottom: 5px;
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        .submit-comment {
+            background: #9F81BB;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        .comments-container {
+            margin-top: 10px;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+        
+        .comment {
+            font-size: 11px;
+            margin-bottom: 8px;
+            padding-left: 10px;
+            border-left: 2px solid #9F81BB;
+        }
+        
+        .comment-user {
+            font-weight: 600;
+            color: #9F81BB;
+        }
+        
+        .comment-text {
+            margin-top: 3px;
+        }
+        
+        .comment-time {
+            font-size: 9px;
+            color: rgba(0, 0, 0, 0.5);
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+        <div class="back-container" onclick="window.location.href='index.html'">
+            <img class="back-icon" src="images/Back.png" alt="Back">
+            <div class="back-text">Back</div>
+        </div>
+        <div class="title">Camp Discussion</div>
+        <div class="action-button"></div>
+        
+        <div class="category-boxes">
+            <div class="category-box category-1">
+                <img src="images/chats.png" alt="Rush Camp" style="width: 20px; height: 20px; margin: 10px auto; display: block;">
+                <img src="images/tent.png" alt="Rush Camp" style="width: 50px; height: 30px; margin: 10px auto; display: block;">
+                <img src="images/swap.png" alt="Rush Camp" style="width: 30px; height: 8px; margin: 10px auto; display: block;">
+            </div>
+            <div class="category-box category-2">
+                <img src="images/faq.png" alt="FAQ" style="width: 50px; height: 70px; margin: 10px auto; display: block;">
+            </div>
+            <div class="category-box category-3">
+                <img src="images/chats.png" alt="Rush Camp" style="width: 20px; height: 20px; margin: 10px auto; display: block;">
+                <img src="images/car-sharing.png" alt="Car Sharing" style="width: 50px; height: 40px; margin: 10px auto; display: block;">
+            </div>
+        </div>
+        
+        <div class="category-label label-1">Rush Camp<br>Questions</div>
+        <div class="category-label label-2">Frequently Asked<br>Questions</div>
+        <div class="category-label label-3">Car Sharing<br>Questions</div>
+        
+        <div class="section-title previous-questions">Previous Questions</div>
+        
+        <div class="create-post" onclick="window.location.href='create-post.html'">
+            create a post
+            <div style="margin-left: 10px;">+</div>
+            <img src="images/pen.png" alt="+" style="width: 15px; height: 15px; margin-left: 10px;">
+        </div>
+        
+        <!-- Posts will be dynamically inserted here -->
+        <div id="postsContainer"></div>
+        
+        <div class="footer" id="pageFooter">
+            <div class="footer-icons">
+                <img class="footer-icon" src="images/Home.png" alt="Home" onclick="window.location.href='index.html'">
+                <img class="footer-icon" src="images/Calendar Plus.png" alt="Book">
+                <img class="footer-icon" src="images/Collaboration.png" alt="Social Hub">
+                <img class="footer-icon" src="images/User.png" alt="Profile">
+            </div>
+            <div class="footer-labels">
+                <span>Home</span>
+                <span>Book</span>
+                <span>Social Hub</span>
+                <span>Profile</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Document Viewer Modal -->
+    <div id="documentModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content" id="modalContent"></div>
+    </div>
+
+    <script>
+        // Current user (replace with actual user session in real app)
+        const currentUser = "Ace";
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const postsContainer = document.getElementById('postsContainer');
+            const footer = document.getElementById('pageFooter');
+            
+            // Load posts from localStorage
+            let posts = JSON.parse(localStorage.getItem('posts') || '[]');
+            
+            // Sample posts if empty (for demo)
+            if (posts.length === 0) {
+                posts = [
+                    {
+                        id: 1,
+                        title: "How do I prepare for my first camping trip?",
+                        body: "I'm looking to find the a new equipment for my family of 4 for our first camping trip and I'm unsure what I should purchase",
+                        username: "Ace",
+                        userBadge: "basic camper",
+                        timestamp: "30 min ago",
+                        likes: 500,
+                        comments: 4,
+                        userVote: 0, // 0 = no vote, 1 = upvote, -1 = downvote
+                        postComments: []
+                    },
+                    {
+                        id: 2,
+                        title: "How to know which parks are the best ones for camping?",
+                        body: "I really want to try camping at different parks because I only ever go to Algonquin. Can someone recommend other popular parks?",
+                        username: "minji_97",
+                        userBadge: "explorer",
+                        timestamp: "5 hrs ago",
+                        likes: 321,
+                        comments: 52,
+                        userVote: 0,
+                        postComments: []
+                    }
+                ];
+                localStorage.setItem('posts', JSON.stringify(posts));
+            }
+            
+            renderPosts(posts);
+            
+            function renderPosts(posts) {
+                postsContainer.innerHTML = '';
+                let topPosition = 355;
+                
+                posts.forEach((post, index) => {
+                    const postElement = document.createElement('div');
+                    postElement.className = 'post-container';
+                    
+                    // Generate attachments HTML if they exist
+                    let attachmentsHTML = '';
+                    let attachmentsHeight = 0;
+                    
+                    if (post.attachments && post.attachments.length > 0) {
+                        attachmentsHTML = `
+                            <div class="attachments-container" style="top: ${topPosition + 150}px;">
+                                ${post.attachments.map(attachment => {
+                                    if (attachment.type === 'image') {
+                                        return `
+                                            <div class="attachment-item" onclick="viewAttachment('${attachment.url}', '${attachment.name}', 'image')">
+                                                <img src="${attachment.url}" alt="${attachment.name}" class="attachment-image">
+                                            </div>
+                                        `;
+                                    } else {
+                                        return `
+                                            <div class="attachment-item attachment-file" onclick="viewAttachment('${attachment.url}', '${attachment.name}', 'file')">
+                                                <div>📄</div>
+                                                <div class="file-name">${attachment.name}</div>
+                                            </div>
+                                        `;
+                                    }
+                                }).join('')}
+                            </div>
+                        `;
+                        attachmentsHeight = 110; // Adjust height for attachments
+                    }
+                    
+                    // Generate comments HTML if they exist
+                    let commentsHTML = '';
+                    if (post.postComments && post.postComments.length > 0) {
+                        commentsHTML = `
+                            <div class="comments-container">
+                                ${post.postComments.map(comment => `
+                                    <div class="comment">
+                                        <div class="comment-user">${comment.username}</div>
+                                        <div class="comment-text">${comment.text}</div>
+                                        <div class="comment-time">${comment.timestamp}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                    }
+                    
+                    postElement.innerHTML = `
+                        <div class="user-info" style="left: 77px; top: ${topPosition + 40}px;">
+                            <span class="username">${post.username}</span>
+                            <span class="time">${post.timestamp}</span>
+                        </div>
+                        <div class="question" style="left: 37px; top: ${topPosition + 70}px; width: 329px;">${post.title}</div>
+                        <div class="question-content" style="left: 38px; top: ${topPosition + 120}px; height: auto;">
+                            ${post.body}
+                        </div>
+                        ${attachmentsHTML}
+                        <div class="action-bar" style="left: 113px; top: ${topPosition + 170 + attachmentsHeight}px;">
+                            <div class="action-button-small" style="width: 60px">
+                                <img src="images/up.png" alt="Upvote" class="vote-arrow" onclick="handleVote(${post.id}, 1)" 
+                                     style="filter: ${post.userVote === 1 ? 'brightness(0) invert(1)' : 'none'}">
+                                <div id="likes-${post.id}">${post.likes}</div>
+                                <img src="images/down.png" alt="Downvote" class="vote-arrow" onclick="handleVote(${post.id}, -1)"
+                                     style="filter: ${post.userVote === -1 ? 'brightness(0) invert(1)' : 'none'}">
+                            </div>
+                            <div class="action-button-small" style="width: 46px" onclick="toggleCommentSection(${post.id})">
+                                <img src="images/comment.png" alt="Comments" style="width: 13px; height: 13px; margin-right: 5px;">
+                                <div>${post.comments}</div>
+                            </div>
+                            <div class="action-button-small" style="width: 41px">
+                                <img src="images/share.png" alt="Share" style="width: 12px; height: 12px; margin-right: 5px;">
+                                <div>share</div>
+                            </div>
+                            ${post.username === currentUser ? 
+                                `<button class="delete-button" onclick="deletePost(${post.id})">Delete</button>` 
+                                : ''}
+                        </div>
+                        <div class="user-avatar"  style="left: 35px; top: ${topPosition + 30}px;"></div>
+                        <div class="user-badge" style="left: 135px; top: ${topPosition + 60}px; width: 51px;">${post.userBadge}</div>
+                        <img class="badge-icon" src="images/${post.userBadge.includes('basic') ? 'gold' : 'silver'}.png" alt="Badge" style="width: 18px; height: 18px; left: 149px; top: ${topPosition + 30}px;">
+                        
+                        <!-- Comment section -->
+                        <div class="comment-section" id="comment-section-${post.id}" style="top: ${topPosition + 200 + attachmentsHeight}px;">
+                            <textarea class="comment-input" id="comment-input-${post.id}" placeholder="Write a comment..."></textarea>
+                            <button class="submit-comment" onclick="submitComment(${post.id})">Post</button>
+                            ${commentsHTML}
+                        </div>
+                        
+                        ${index < posts.length - 1 ? `<div class="divider" style="top: ${topPosition + 200 + attachmentsHeight}px;"></div>` : ''}
+                    `;
+                    
+                    postsContainer.appendChild(postElement);
+                    topPosition += 250 + attachmentsHeight;
+                });
+                
+                // Adjust footer position
+                footer.style.top = `${topPosition + 100}px`;
+                document.querySelector('.container').style.height = `${topPosition + 200}px`;
+            }
+            
+            window.toggleCommentSection = function(postId) {
+                const commentSection = document.getElementById(`comment-section-${postId}`);
+                commentSection.style.display = commentSection.style.display === 'block' ? 'none' : 'block';
+            };
+            
+            window.submitComment = function(postId) {
+                const commentInput = document.getElementById(`comment-input-${postId}`);
+                const commentText = commentInput.value.trim();
+                
+                if (commentText) {
+                    let posts = JSON.parse(localStorage.getItem('posts'));
+                    const postIndex = posts.findIndex(post => post.id === postId);
+                    
+                    if (postIndex !== -1) {
+                        const newComment = {
+                            username: currentUser,
+                            text: commentText,
+                            timestamp: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) + " today"
+                        };
+                        
+                        // Add comment to post
+                        if (!posts[postIndex].postComments) {
+                            posts[postIndex].postComments = [];
+                        }
+                        posts[postIndex].postComments.push(newComment);
+                        
+                        // Update comment count
+                        posts[postIndex].comments = posts[postIndex].postComments.length;
+                        
+                        // Save and re-render
+                        localStorage.setItem('posts', JSON.stringify(posts));
+                        renderPosts(posts);
+                        
+                        // Clear input
+                        commentInput.value = '';
+                    }
+                }
+            };
+            
+            window.handleVote = function(postId, voteValue) {
+                let posts = JSON.parse(localStorage.getItem('posts'));
+                const postIndex = posts.findIndex(post => post.id === postId);
+                
+                if (postIndex !== -1) {
+                    const post = posts[postIndex];
+                    const currentVote = post.userVote || 0;
+                    
+                    // Calculate vote change
+                    let voteChange = 0;
+                    if (currentVote === voteValue) {
+                        // Clicking the same vote again removes it
+                        voteChange = -voteValue;
+                        post.userVote = 0;
+                    } else {
+                        // Changing vote
+                        voteChange = voteValue - currentVote;
+                        post.userVote = voteValue;
+                    }
+                    
+                    // Update likes count
+                    post.likes += voteChange;
+                    
+                    // Save and re-render
+                    localStorage.setItem('posts', JSON.stringify(posts));
+                    document.getElementById(`likes-${postId}`).textContent = post.likes;
+                    
+                    // Update arrow colors
+                    const arrows = document.querySelectorAll(`[onclick="handleVote(${postId}, 1)"], [onclick="handleVote(${postId}, -1)"]`);
+                    arrows.forEach(arrow => {
+                        const arrowVote = arrow.getAttribute('onclick').includes('1)') ? 1 : -1;
+                        arrow.style.filter = post.userVote === arrowVote ? 'brightness(0) invert(1)' : 'none';
+                    });
+                }
+            };
+            
+            window.deletePost = function(postId) {
+                if (confirm("Are you sure you want to delete this post?")) {
+                    let posts = JSON.parse(localStorage.getItem('posts'));
+                    posts = posts.filter(post => post.id !== postId);
+                    localStorage.setItem('posts', JSON.stringify(posts));
+                    renderPosts(posts);
+                }
+            };
+            
+            // Back button functionality
+            document.querySelector('.back-button').addEventListener('click', function() {
+                window.history.back();
+            });
+            
+            document.querySelector('.back-icon').addEventListener('click', function() {
+                window.history.back();
+            });
+        });
+        
+        // Document viewer functions
+        window.viewAttachment = function(url, name, type) {
+            const modal = document.getElementById('documentModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            if (type === 'image') {
+                modalContent.innerHTML = `
+                    <img class="modal-image" src="${url}" alt="${name}">
+                `;
+            } else {
+                // For files, we'll show a download option since we can't preview all file types
+                modalContent.innerHTML = `
+                    <div class="file-viewer">
+                        <div class="file-icon">📄</div>
+                        <div>${name}</div>
+                        <button class="download-btn" onclick="downloadFile('${url}', '${name}')">Download File</button>
+                    </div>
+                `;
+            }
+            
+            modal.style.display = "block";
+        };
+        
+        window.closeModal = function() {
+            document.getElementById('documentModal').style.display = "none";
+        };
+        
+        window.downloadFile = function(url, filename) {
+            // Create a temporary link element
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        };
+        
+        // Close modal when clicking outside the content
+        window.onclick = function(event) {
+            const modal = document.getElementById('documentModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+    </script>
+</body>
+</html> 

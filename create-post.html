@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a Post</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&family=Montserrat:wght@400;600&family=Inter:wght@400&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        .container {
+            width: 393px;
+            height: 852px;
+            position: relative;
+            background: white;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        
+        .header {
+            width: 393px;
+            height: 142px;
+            background: #9F81BB;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .back-button {
+            position: absolute;
+            left: 32px;
+            top: 61px;
+            color: white;
+            font-size: 14px;
+            font-weight: 400;
+        }
+        
+        .back-icon {
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            left: 12px;
+            top: 57px;
+        }
+        
+        .title {
+            position: absolute;
+            left: 111px;
+            top: 93px;
+            color: white;
+            font-size: 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .user-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #D3A32A;
+            position: absolute;
+            top: 180px;
+            left: 37px;
+        }
+        
+        .username {
+            position: absolute;
+            left: 76px;
+            top: 190px;
+            color: black;
+            font-size: 16px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+        }
+        
+        .user-badge {
+            position: absolute;
+            left: 111px;
+            top: 207px;
+            color: black;
+            font-size: 6px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            text-align: center;
+            width: 45px;
+        }
+        
+        .badge-icon {
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            left: 122px;
+            top: 180px;
+        }
+        
+        .post-form {
+            width: 325px;
+            height: 212px;
+            position: absolute;
+            left: 34px;
+            top: 241px;
+        }
+        
+        .title-input {
+            width: 318px;
+            height: 34px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 5px;
+            border: 0.5px black solid;
+            padding: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        
+        .title-placeholder {
+            position: absolute;
+            left: 7px;
+            top: 7px;
+            color: black;
+            font-size: 16px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            pointer-events: none;
+        }
+        
+        .body-input {
+            width: 318px;
+            height: 127px;
+            position: absolute;
+            top: 37px;
+            left: 0;
+            border-radius: 5px;
+            border: 0.5px black solid;
+            padding: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            resize: none;
+        }
+        
+        .body-placeholder {
+            position: absolute;
+            left: 5px;
+            top: 46px;
+            color: black;
+            font-size: 13px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            pointer-events: none;
+        }
+        
+        .divider {
+            width: 321px;
+            height: 0px;
+            position: absolute;
+            top: 129px;
+            left: 0;
+            border-top: 0.5px black solid;
+        }
+        
+        .attachment-icons {
+            position: absolute;
+            left: 261px;
+            top: 138px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .attachment-icon {
+            width: 19px;
+            height: 19px;
+            cursor: pointer;
+        }
+        
+        .post-button {
+            width: 90px;
+            height: 27px;
+            position: absolute;
+            left: 226px;
+            top: 185px;
+            background: rgba(211, 163, 42, 0.5);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .post-button:hover {
+            background: rgba(211, 163, 42, 0.7);
+        }
+        
+        .footer {
+            width: 393px;
+            height: 62px;
+            position: absolute;
+            left: 0;
+            top: 756px;
+            border-top: 0.2px solid #7E7B7B;
+        }
+        
+        .footer-icons {
+            position: absolute;
+            left: 40px;
+            top: 15px;
+            display: flex;
+            gap: 64px;
+        }
+        
+        .footer-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+        
+        .footer-labels {
+            position: absolute;
+            left: 37px;
+            top: 48px;
+            display: flex;
+            gap: 64px;
+            color: black;
+            font-size: 12px;
+            font-weight: 400;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .selected-files {
+            position: absolute;
+            left: 34px;
+            top: 470px;
+            width: 325px;
+            font-size: 12px;
+            color: #555;
+        }
+        
+        .file-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .remove-file {
+            margin-left: 10px;
+            color: red;
+            cursor: pointer;
+        }
+        
+        /* File upload previews */
+        .preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .preview-item {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .preview-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .preview-file {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #f5f5f5;
+            font-size: 24px;
+        }
+        
+        .file-name {
+            font-size: 10px;
+            text-align: center;
+            word-break: break-all;
+            padding: 2px;
+        }
+        
+        .remove-preview {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            background: red;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            cursor: pointer;
+        }
+
+        /* Popup notification styles */
+        .popup-notification {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            z-index: 1000;
+            display: none;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+        <div class="back-button">Back</div>
+        <img class="back-icon" src="images/back.png" alt="Back">
+        <div class="title">Create a Post</div>
+        
+        <div class="user-avatar"></div>
+        <div class="username">Ace</div>
+        <div class="user-badge">Basic Camper</div>
+        <img class="badge-icon" src="images/bronze.png" alt="Badge">
+        
+        <div class="post-form">
+            <input type="text" class="title-input" id="titleInput">
+            <div class="title-placeholder" id="titlePlaceholder">Title - ask your question</div>
+            
+            <textarea class="body-input" id="bodyInput"></textarea>
+            <div class="body-placeholder" id="bodyPlaceholder">body text - write details about your questions in detail</div>
+            
+            <div class="divider"></div>
+            
+            <div class="attachment-icons">
+                <input type="file" id="fileInput" class="file-input" multiple>
+                <img class="attachment-icon" src="images/Link.png" alt="Attach file" onclick="document.getElementById('fileInput').click()">
+                
+                <input type="file" id="imageInput" class="file-input" accept="image/*" multiple>
+                <img class="attachment-icon" src="images/gallery.png" alt="Add photo" onclick="document.getElementById('imageInput').click()">
+            </div>
+            
+            <div class="post-button" id="postButton">Post</div>
+        </div>
+        
+        <!-- Preview container for selected files -->
+        <div class="selected-files" id="selectedFiles">
+            <div class="preview-container" id="previewContainer"></div>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-icons">
+                <img class="footer-icon" src="images/home-icon.png" alt="Home" onclick="window.location.href='discussion.html'">
+                <img class="footer-icon" src="images/calendar-icon.png" alt="Book">
+                <img class="footer-icon" src="images/collaboration-icon.png" alt="Social Hub">
+                <img class="footer-icon" src="images/user-icon.png" alt="Profile">
+            </div>
+            <div class="footer-labels">
+                <span>Home</span>
+                <span>Book</span>
+                <span>Social Hub</span>
+                <span>Profile</span>
+            </div>
+        </div>
+
+        <!-- Popup notification -->
+        <div class="popup-overlay" id="popupOverlay"></div>
+        <div class="popup-notification" id="popupNotification">
+            Your question has been posted.<br>You have earned 5 points!
+        </div>
+    </div>
+
+    <script>
+        // Current user
+        const currentUser = "Ace";
+        
+        // Store attachments
+        let attachments = [];
+        
+        // Handle placeholder behavior for title
+        const titleInput = document.getElementById('titleInput');
+        const titlePlaceholder = document.getElementById('titlePlaceholder');
+        
+        titleInput.addEventListener('input', function() {
+            if (this.value) {
+                titlePlaceholder.classList.add('hidden');
+            } else {
+                titlePlaceholder.classList.remove('hidden');
+            }
+        });
+        
+        titleInput.addEventListener('focus', function() {
+            titlePlaceholder.classList.add('hidden');
+        });
+        
+        titleInput.addEventListener('blur', function() {
+            if (!this.value) {
+                titlePlaceholder.classList.remove('hidden');
+            }
+        });
+        
+        // Handle placeholder behavior for body
+        const bodyInput = document.getElementById('bodyInput');
+        const bodyPlaceholder = document.getElementById('bodyPlaceholder');
+        
+        bodyInput.addEventListener('input', function() {
+            if (this.value) {
+                bodyPlaceholder.classList.add('hidden');
+            } else {
+                bodyPlaceholder.classList.remove('hidden');
+            }
+        });
+        
+        bodyInput.addEventListener('focus', function() {
+            bodyPlaceholder.classList.add('hidden');
+        });
+        
+        bodyInput.addEventListener('blur', function() {
+            if (!this.value) {
+                bodyPlaceholder.classList.remove('hidden');
+            }
+        });
+        
+        // File input change handlers
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            handleFileSelection(e.target.files, false);
+            e.target.value = '';
+        });
+        
+        document.getElementById('imageInput').addEventListener('change', function(e) {
+            handleFileSelection(e.target.files, true);
+            e.target.value = '';
+        });
+        
+        function handleFileSelection(files, isImage) {
+            const filesArray = Array.from(files);
+            
+            filesArray.forEach(file => {
+                const attachment = {
+                    type: isImage ? 'image' : 'file',
+                    file: file,
+                    name: file.name,
+                    url: URL.createObjectURL(file)
+                };
+                
+                attachments.push(attachment);
+                renderAttachmentPreview(attachment);
+            });
+        }
+        
+        function renderAttachmentPreview(attachment) {
+            const previewContainer = document.getElementById('previewContainer');
+            const previewItem = document.createElement('div');
+            previewItem.className = 'preview-item';
+            
+            if (attachment.type === 'image') {
+                previewItem.innerHTML = `
+                    <img src="${attachment.url}" class="preview-image">
+                    <div class="remove-preview" onclick="removeAttachment('${attachment.url}')">×</div>
+                `;
+            } else {
+                previewItem.innerHTML = `
+                    <div class="preview-file">
+                        📄
+                        <div class="remove-preview" onclick="removeAttachment('${attachment.url}')">×</div>
+                        <div class="file-name">${attachment.name}</div>
+                    </div>
+                `;
+            }
+            
+            previewContainer.appendChild(previewItem);
+        }
+        
+        window.removeAttachment = function(url) {
+            attachments = attachments.filter(attachment => attachment.url !== url);
+            document.getElementById('previewContainer').innerHTML = '';
+            attachments.forEach(attachment => renderAttachmentPreview(attachment));
+        };
+        
+        // Handle post button click
+        const postButton = document.getElementById('postButton');
+        
+        postButton.addEventListener('click', function() {
+            // Basic validation
+            if (titleInput.value.trim() === '' || bodyInput.value.trim() === '') {
+                alert('Please fill in both title and body before posting');
+                return;
+            }
+            
+            // Create post object with attachments
+            const newPost = {
+                id: Date.now(),
+                title: titleInput.value.trim(),
+                body: bodyInput.value.trim(),
+                username: currentUser,
+                userBadge: "Basic Camper",
+                timestamp: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+                likes: 0,
+                comments: 0,
+                attachments: attachments.map(attachment => ({
+                    type: attachment.type,
+                    name: attachment.name,
+                    url: attachment.url
+                }))
+            };
+            
+            // Store in localStorage
+            let posts = JSON.parse(localStorage.getItem('posts') || '[]');
+            posts.unshift(newPost);
+            localStorage.setItem('posts', JSON.stringify(posts));
+            
+            // Show popup notification
+            document.getElementById('popupOverlay').style.display = 'block';
+            document.getElementById('popupNotification').style.display = 'block';
+            
+            // Redirect to discussion page after 2 seconds
+            setTimeout(function() {
+                window.location.href = 'discussion.html';
+            }, 2000);
+        });
+        
+        // Back button functionality
+        document.querySelector('.back-button').addEventListener('click', function() {
+            window.history.back();
+        });
+        
+        document.querySelector('.back-icon').addEventListener('click', function() {
+            window.history.back();
+        });
+    </script>
+</body>
+</html>
