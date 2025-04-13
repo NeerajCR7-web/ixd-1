@@ -16,34 +16,34 @@ Built with HTML5, CSS3, and JavaScript, the app uses localStorage for persistent
 
 ## Key Features
 1. Campsite Booking System
-Browse parks with filters (dates, amenities, accessibility).
+     Browse parks with filters (dates, amenities, accessibility).
 
-Reserve campsites (mock checkout flow).
+     Reserve campsites (mock checkout flow).
 
 2. Social Hub & Discussion Forum
-Categories: Rush Camp, FAQs, Car Sharing.
+     Categories: Rush Camp, FAQs, Car Sharing.
 
-Post interactions: Upvotes/downvotes, comments, attachments (images/files).
+     Post interactions: Upvotes/downvotes, comments, attachments (images/files).
 
-User roles: Badges (e.g., "Explorer") for active contributors.
+     User roles: Badges (e.g., "Explorer") for active contributors.
 
 3. User Profiles
-View booking history and forum activity.
+     View booking history and forum activity.
 
-Earn badges based on engagement.
+     Earn badges based on engagement.
 
 4. Admin Tools (Simulated)
-Edit/delete posts or comments (user-specific).
+     Edit/delete posts or comments (user-specific).
 
 ## Tech Stack
 🛠️ Frontend:
 
-HTML5, CSS3 (Flexbox/Grid), JavaScript (ES6+)
+     HTML5, CSS3 (Flexbox/Grid), JavaScript (ES6+)
 
-Responsive design (mobile-first)
+     Responsive design (mobile-first)
 
-Modal dialogs for image/file previews
+     Modal dialogs for image/file previews
 
 🗃️ "Backend":
 
-localStorage for data persistence (posts, bookings, user actions)
+     localStorage for data persistence (posts, bookings, user actions)
