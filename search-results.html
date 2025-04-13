@@ -101,20 +101,31 @@
             left: 45px;
             position: absolute;
             cursor: pointer;
+            padding: 5px 10px;
+            border: 1px solid #2F75BB;
+            border-radius: 4px;
+            background-color: #f0f8ff;
         }
         
         .driver-name:hover {
             color: #2F75BB;
             text-decoration: underline;
+            background-color: #e1f0ff;
         }
         
-        .rides-count {
+        .ratings {
             text-align: center;
             color: black;
             font-size: 12px;
             font-family: 'Montserrat', sans-serif;
             font-weight: 400;
             position: absolute;
+        }
+        
+        .star {
+            color: #FFA500;
+            font-size: 14px;
+            margin-left: 2px;
         }
         
         .car-price {
@@ -323,6 +334,28 @@
         .param-value {
             font-weight: 400;
         }
+        .ratings {
+    text-align: center;
+    color: black;
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    position: absolute;
+    cursor: pointer;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.ratings:hover {
+    background-color: #f0f8ff;
+    color: #2F75BB;
+}
+
+.star {
+    color: #FFA500;
+    font-size: 14px;
+    margin-left: 2px;
+}
     </style>
 </head>
 <body>
@@ -340,7 +373,7 @@
             <div class="param-item"><span class="param-label">From:</span> <span class="param-value" id="param-from"></span></div>
             <div class="param-item"><span class="param-label">To:</span> <span class="param-value" id="param-to"></span></div>
             <div class="param-item"><span class="param-label">Passengers:</span> <span class="param-value" id="param-passengers"></span></div>
-            <div class="param-item"><span class="param-label">Dates:</span> <span class="param-value" id="param-dates"></span></div>
+            <div class="param-item"><span class="param-label">Date:</span> <span class="param-value" id="param-date"></span></div>
         </div>
         
         <!-- Driver Info Box with Confirm Button -->
@@ -384,7 +417,7 @@
         
         <!-- Column Headers -->
         <div class="column-header" style="left: 18px;">Name of Driver</div>
-        <div class="column-header" style="left: 222px;">Rides Given</div>
+        <div class="column-header" style="left: 222px;">Ratings</div>
         <div class="column-header" style="left: 132px;">Badge Tier</div>
         <div class="column-header" style="left: 320px;">Car Price</div>
         
@@ -456,12 +489,12 @@
             'Ultimate Camper'
         )">Kelly</div>
         
-        <!-- Rides Count -->
-        <div class="rides-count" style="left: 246px; top: 522px;">12</div>
-        <div class="rides-count" style="left: 248px; top: 566px;">9</div>
-        <div class="rides-count" style="left: 251px; top: 611px;">2</div>
-        <div class="rides-count" style="left: 251px; top: 655px;">5</div>
-        <div class="rides-count" style="left: 252px; top: 697px;">21</div>
+        <!-- Ratings -->
+        <div class="ratings" style="left: 222px; top: 522px;" onclick="window.location.href='reviews.html'" >4.8<span class="star">★</span></div>
+        <div class="ratings" style="left: 222px; top: 566px;">4.5<span class="star">★</span></div>
+        <div class="ratings" style="left: 222px; top: 611px;">4.2<span class="star">★</span></div>
+        <div class="ratings" style="left: 222px; top: 655px;">4.6<span class="star">★</span></div>
+        <div class="ratings" style="left: 222px; top: 697px;">4.9<span class="star">★</span></div>
         
         <!-- Car Prices -->
         <div class="car-price" style="left: 334px; top: 519px;">$65</div>
@@ -501,17 +534,36 @@
     </div>
 
     <script>
-        // Parse URL parameters when page loads
+        // Parse URL parameters when page loads and store them in localStorage
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
+            let searchParams = {};
+            
+            // Check if parameters exist in URL
+            if (urlParams.has('from')) {
+                searchParams = {
+                    from: decodeURIComponent(urlParams.get('from')),
+                    to: decodeURIComponent(urlParams.get('to')),
+                    passengers: urlParams.get('passengers'),
+                    start: urlParams.get('start')
+                };
+                // Store in localStorage
+                localStorage.setItem('searchParams', JSON.stringify(searchParams));
+            } else {
+                // Try to get from localStorage if not in URL
+                const storedParams = localStorage.getItem('searchParams');
+                if (storedParams) {
+                    searchParams = JSON.parse(storedParams);
+                }
+            }
             
             // Display the parameters if they exist
-            if (urlParams.has('from')) {
-                document.getElementById('param-from').textContent = decodeURIComponent(urlParams.get('from'));
-                document.getElementById('param-to').textContent = decodeURIComponent(urlParams.get('to'));
-                document.getElementById('param-passengers').textContent = urlParams.get('passengers');
+            if (searchParams.from) {
+                document.getElementById('param-from').textContent = searchParams.from;
+                document.getElementById('param-to').textContent = searchParams.to;
+                document.getElementById('param-passengers').textContent = searchParams.passengers;
                 
-                // Format dates for display (e.g., "Jan 1, 2023" instead of "2023-01-01")
+                // Format date for display (e.g., "Jan 1, 2023" instead of "2023-01-01")
                 const formatDate = (dateStr) => {
                     try {
                         const date = new Date(dateStr);
@@ -524,9 +576,8 @@
                     }
                 };
                 
-                const startDate = formatDate(urlParams.get('start'));
-                const endDate = formatDate(urlParams.get('end'));
-                document.getElementById('param-dates').textContent = `${startDate} to ${endDate}`;
+                const startDate = formatDate(searchParams.start);
+                document.getElementById('param-date').textContent = startDate;
             } else {
                 // Hide the parameters section if no search was made
                 document.getElementById('search-params').style.display = 'none';

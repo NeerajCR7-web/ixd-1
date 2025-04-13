@@ -25,7 +25,7 @@
         .header {
             width: 393px;
             height: 142px;
-            background: #9F81BB;
+            background: #2F75BB;
             position: absolute;
             top: 0;
             left: 0;
@@ -186,7 +186,7 @@
             position: absolute;
             left: 226px;
             top: 185px;
-            background: rgba(211, 163, 42, 0.5);
+            background: #028A61;
             border-radius: 6px;
             display: flex;
             align-items: center;
@@ -319,40 +319,6 @@
             font-size: 10px;
             cursor: pointer;
         }
-
-        /* Popup notification styles */
-        .popup-notification {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 20px 30px;
-            border-radius: 10px;
-            z-index: 1000;
-            display: none;
-            text-align: center;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 16px;
-            animation: fadeIn 0.3s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            display: none;
-        }
     </style>
 </head>
 <body>
@@ -394,10 +360,10 @@
         
         <div class="footer">
             <div class="footer-icons">
-                <img class="footer-icon" src="images/home-icon.png" alt="Home" onclick="window.location.href='discussion.html'">
-                <img class="footer-icon" src="images/calendar-icon.png" alt="Book">
-                <img class="footer-icon" src="images/collaboration-icon.png" alt="Social Hub">
-                <img class="footer-icon" src="images/user-icon.png" alt="Profile">
+                <img class="footer-icon" src="images/Home.png" alt="Home" onclick="window.location.href='index.html'">
+                <img class="footer-icon" src="images/Calendar Plus.png" alt="Book">
+                <img class="footer-icon" src="images/Collaboration.png" alt="Social Hub">
+                <img class="footer-icon" src="images/User.png" alt="Profile">
             </div>
             <div class="footer-labels">
                 <span>Home</span>
@@ -405,12 +371,6 @@
                 <span>Social Hub</span>
                 <span>Profile</span>
             </div>
-        </div>
-
-        <!-- Popup notification -->
-        <div class="popup-overlay" id="popupOverlay"></div>
-        <div class="popup-notification" id="popupNotification">
-            Your question has been posted.<br>You have earned 5 points!
         </div>
     </div>
 
@@ -480,15 +440,39 @@
             const filesArray = Array.from(files);
             
             filesArray.forEach(file => {
-                const attachment = {
-                    type: isImage ? 'image' : 'file',
-                    file: file,
-                    name: file.name,
-                    url: URL.createObjectURL(file)
-                };
+                // Check file size (max 5MB)
+                const MAX_FILE_SIZE = 5 * 1024 * 1024;
+                if (file.size > MAX_FILE_SIZE) {
+                    alert('File is too large. Maximum size is 5MB');
+                    return;
+                }
                 
-                attachments.push(attachment);
-                renderAttachmentPreview(attachment);
+                if (isImage) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const attachment = {
+                            type: 'image',
+                            file: file,
+                            name: file.name,
+                            data: e.target.result // Store base64 data
+                        };
+                        attachments.push(attachment);
+                        renderAttachmentPreview(attachment);
+                    };
+                    reader.onerror = function() {
+                        alert('Error reading file. Please try another file.');
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    const attachment = {
+                        type: 'file',
+                        file: file,
+                        name: file.name,
+                        url: URL.createObjectURL(file) // Temporary URL for non-image files
+                    };
+                    attachments.push(attachment);
+                    renderAttachmentPreview(attachment);
+                }
             });
         }
         
@@ -499,14 +483,14 @@
             
             if (attachment.type === 'image') {
                 previewItem.innerHTML = `
-                    <img src="${attachment.url}" class="preview-image">
-                    <div class="remove-preview" onclick="removeAttachment('${attachment.url}')">×</div>
+                    <img src="${attachment.data}" class="preview-image">
+                    <div class="remove-preview" onclick="removeAttachment('${attachment.name}')">×</div>
                 `;
             } else {
                 previewItem.innerHTML = `
                     <div class="preview-file">
                         📄
-                        <div class="remove-preview" onclick="removeAttachment('${attachment.url}')">×</div>
+                        <div class="remove-preview" onclick="removeAttachment('${attachment.name}')">×</div>
                         <div class="file-name">${attachment.name}</div>
                     </div>
                 `;
@@ -515,8 +499,14 @@
             previewContainer.appendChild(previewItem);
         }
         
-        window.removeAttachment = function(url) {
-            attachments = attachments.filter(attachment => attachment.url !== url);
+        window.removeAttachment = function(name) {
+            // Revoke object URL if it exists
+            const attachment = attachments.find(a => a.name === name);
+            if (attachment && attachment.url) {
+                URL.revokeObjectURL(attachment.url);
+            }
+            
+            attachments = attachments.filter(attachment => attachment.name !== name);
             document.getElementById('previewContainer').innerHTML = '';
             attachments.forEach(attachment => renderAttachmentPreview(attachment));
         };
@@ -544,8 +534,10 @@
                 attachments: attachments.map(attachment => ({
                     type: attachment.type,
                     name: attachment.name,
-                    url: attachment.url
-                }))
+                    data: attachment.data, // Base64 for images
+                    url: attachment.url // For non-image files
+                })),
+                showNotification: true
             };
             
             // Store in localStorage
@@ -553,14 +545,15 @@
             posts.unshift(newPost);
             localStorage.setItem('posts', JSON.stringify(posts));
             
-            // Show popup notification
-            document.getElementById('popupOverlay').style.display = 'block';
-            document.getElementById('popupNotification').style.display = 'block';
+            // Clean up object URLs
+            attachments.forEach(attachment => {
+                if (attachment.url) {
+                    URL.revokeObjectURL(attachment.url);
+                }
+            });
             
-            // Redirect to discussion page after 2 seconds
-            setTimeout(function() {
-                window.location.href = 'discussion.html';
-            }, 2000);
+            // Redirect to discussion page
+            window.location.href = 'discussion.html';
         });
         
         // Back button functionality
@@ -570,6 +563,15 @@
         
         document.querySelector('.back-icon').addEventListener('click', function() {
             window.history.back();
+        });
+        
+        // Clean up object URLs when page unloads
+        window.addEventListener('beforeunload', function() {
+            attachments.forEach(attachment => {
+                if (attachment.url) {
+                    URL.revokeObjectURL(attachment.url);
+                }
+            });
         });
     </script>
 </body>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Raleway:wght@400;600&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Raleway', sans-serif;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .main-container {
+            width: 393px;
+            height: 852px;
+            position: relative;
+            background: white;
+            overflow: hidden;
+        }
+        
+        .nav-bar {
+            width: 393px;
+            height: 62px;
+            left: 0px;
+            top: 754px;
+            position: absolute;
+        }
+        
+        .nav-icons {
+            left: 40px;
+            top: 15px;
+            position: absolute;
+            display: inline-flex;
+            gap: 64px;
+        }
+        
+        .nav-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+        
+        .nav-label {
+            color: black;
+            font-size: 12px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            position: absolute;
+            cursor: pointer;
+        }
+        
+        .nav-divider {
+            width: 393px;
+            height: 0px;
+            left: 0px;
+            top: 0px;
+            position: absolute;
+            outline: 0.20px #7E7B7B solid;
+            outline-offset: -0.10px;
+        }
+        
+        .header {
+            width: 393px;
+            height: 142px;
+            left: 0px;
+            top: -19px;
+            position: absolute;
+            background: #2F75BB;
+        }
+        
+        .title {
+            left: 121px;
+            top: 78px;
+            position: absolute;
+            color: white;
+            font-size: 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .back {
+            left: 32px;
+            top: 86px;
+            position: absolute;
+            color: white;
+            font-size: 16px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            cursor: pointer;
+        }
+        
+        .back-arrow {
+            width: 25px;
+            height: 25px;
+            left: 12px;
+            top: 82px;
+            position: absolute;
+            cursor: pointer;
+        }
+        
+        .content-box {
+            width: 340px;
+            height: 601px;
+            left: 25px;
+            top: 141px;
+            position: absolute;
+            background: rgba(47, 117, 187, 0.20);
+            border-radius: 5px;
+            border: 1px #2F75BB solid;
+        }
+        
+        .review-text {
+            width: 315px;
+            left: 40px;
+            position: absolute;
+            color: black;
+            font-size: 14px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+        }
+        
+        .review-date {
+            left: 150px;
+            position: absolute;
+            color: black;
+            font-size: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+        }
+        
+        .star-rating {
+            position: absolute;
+            color: #D3A32A;
+            font-size: 16px;
+        }
+        
+        .reviewer-name {
+            position: absolute;
+            color: black;
+            font-size: 18px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 600;
+        }
+        
+        .driver-name {
+            left: 143px;
+            position: absolute;
+            color: #2F75BB;
+            font-size: 18px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 600;
+        }
+        
+        .driver-rating {
+            left: 140px;
+            position: absolute;
+        }
+        
+        .rating-value {
+            color: #D3A32A;
+            font-size: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+        }
+        
+        .rating-text {
+            color: #D3A32A;
+            font-size: 12px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+        }
+        
+        .info-label {
+            left: 54px;
+            position: absolute;
+            color: black;
+            font-size: 18px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 600;
+        }
+        
+        .info-value {
+            left: 172px;
+            position: absolute;
+            color: black;
+            font-size: 14px;
+        }
+        
+        .value-text {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+        }
+        
+        .value-number {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+        }
+        
+        .driver-image {
+            width: 61px;
+            height: 61px;
+            left: 47px;
+            top: 162px;
+            position: absolute;
+            border-radius: 9999px;
+            border: 1px #2F75BB solid;
+            object-fit: cover;
+        }
+        
+        .bio-box {
+            width: 310px;
+            height: 94px;
+            left: 40px;
+            position: absolute;
+            background: #2F75BB;
+            border-radius: 5px;
+        }
+        
+        .bio-box-inner {
+            width: 308px;
+            height: 94px;
+            left: 42px;
+            position: absolute;
+            background: white;
+            border-radius: 5px;
+        }
+        
+        .bio-text {
+            width: 296px;
+            left: 47px;
+            position: absolute;
+            color: black;
+            font-size: 14px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <div class="nav-divider"></div>
+            <div class="nav-icons">
+                <img class="nav-icon" src="https://via.placeholder.com/30" alt="Home" onclick="window.location.href='index.html'">
+                <img class="nav-icon" src="https://via.placeholder.com/30" alt="Book" onclick="window.location.href='book.html'">
+                <img class="nav-icon" src="https://via.placeholder.com/30" alt="Social Hub" onclick="window.location.href='social-hub.html'">
+                <img class="nav-icon" src="https://via.placeholder.com/30" alt="Profile" onclick="window.location.href='profile.html'">
+            </div>
+            <div class="nav-label" style="left: 37px; top: 48px;">Home</div>
+            <div class="nav-label" style="left: 134px; top: 48px;">Book</div>
+            <div class="nav-label" style="left: 216px; top: 48px;">Social Hub</div>
+            <div class="nav-label" style="left: 320px; top: 48px;">Profile</div>
+        </div>
+        
+        <!-- Header -->
+        <div class="header"></div>
+        <div class="title">Car Sharing</div>
+        <div class="back" onclick="window.location.href='search-results.html'">Back</div>
+        <img class="back-arrow" src="images/Back.png" alt="Back arrow" onclick="window.location.href='search-results.html'">
+        
+        <!-- Content Box -->
+        <div class="content-box"></div>
+        
+        <!-- Reviews -->
+        <div class="review-text" style="top: 637px;">
+            John is an amazing guy! He gave us a lot of tips on camping as both my friend and I are new campers because of him we had a great time camping! He also has great music selection too!! He gave us an option of different playlists that he has.
+        </div>
+        
+        <div class="review-date" style="top: 613px;">2 months ago</div>
+        
+        <!-- Star Ratings -->
+        
+        <!-- Small Stars -->
+        <div class="star-rating" style="left: 47px; top: 611px; font-size: 14px;">★</div>
+        <div class="star-rating" style="left: 66px; top: 611px; font-size: 14px;">★</div>
+        <div class="star-rating" style="left: 83px; top: 611px; font-size: 14px;">★</div>
+        <div class="star-rating" style="left: 102px; top: 611px; font-size: 14px;">★</div>
+        <div class="star-rating" style="left: 122px; top: 611px; font-size: 14px;">★</div>
+        
+        <div class="reviewer-name" style="top: 575px; left: 89px;">Carl</div>
+        
+        <!-- Second Review -->
+        <div class="review-text" style="width: 310px; top: 489px;">
+            Had a great time travelling with John he gave us <br/>a lot of insight on camping tips. He also contacted us before hand and we created a road trip playlist on Spotify.
+        </div>
+        
+        <div class="review-date" style="left: 126px; top: 466px;">
+            <span style="font-family: 'Raleway'">1</span><span style="font-family: 'Montserrat'"> month ago</span>
+        </div>
+        
+        <!-- Driver Info -->
+        <div class="driver-name" style="top: 177px;">John</div>
+        
+        <div class="driver-rating" style="top: 209px;">
+            <span class="rating-value">4.8 ★</span><span class="rating-text">          (</span><span class="rating-value">12</span><span class="rating-text"> reviews)</span>
+        </div>
+        
+        <div class="info-label" style="top: 249px;">Vehicle:</div>
+        <div class="info-label" style="top: 281px;">Experience:</div>
+        
+        <div class="info-value" style="top: 253px;">
+            <span class="value-text">Toyota RAV</span><span class="value-number">4</span>
+        </div>
+        
+        <div class="info-value" style="top: 283px;">
+            <span class="value-number">4 </span><span class="value-text">years </span>
+        </div>
+        
+        <!-- Small Star for Driver Rating -->
+        
+        <img class="driver-image" src="https://randomuser.me/api/portraits/men/32.jpg" alt="John's photo">
+        
+        <!-- Bio Box -->
+        <div class="bio-box" style="top: 314px;"></div>
+        <div class="bio-box-inner" style="top: 314px;"></div>
+        <div class="bio-text" style="top: 321px;">
+            Experienced outdoor enthusiasts with extensive knowledge of national park trails. My RAV4 is equipped with roof racks for our gear and comfortable for long drives. I offer guided commentary during our trip!
+        </div>
+        
+        <!-- Star Rating 2 -->
+        
+        <!-- Small Stars for Second Reviewer -->
+        <div class="star-rating" style="left: 46px; top: 464px; font-size: 14px;">★</div>
+        <div class="star-rating" style="left: 65px; top: 464px; font-size: 14px;">★</div>
+        <div class="star-rating" style="left: 82px; top: 464px; font-size: 14px;">★</div>
+        <div class="star-rating" style="left: 101px; top: 464px; font-size: 14px;">★</div>
+        
+        <div class="reviewer-name" style="top: 428px; left: 88px;">Sandy</div>
+    </div>
+
+    <script>
+        // Simple navigation functionality
+        document.querySelector('.back').addEventListener('click', function() {
+            window.location.href = 'search-results.html';
+        });
+        
+        document.querySelector('.back-arrow').addEventListener('click', function() {
+            window.location.href = 'search-results.html';
+        });
+    </script>
+</body>
+</html>
