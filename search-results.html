@@ -566,7 +566,9 @@
                 // Format date for display (e.g., "Jan 1, 2023" instead of "2023-01-01")
                 const formatDate = (dateStr) => {
                     try {
-                        const date = new Date(dateStr);
+                        const [year, month, day] = dateStr.split('-').map(Number);
+const date = new Date(year, month - 1, day);
+
                         if (isNaN(date.getTime())) return "Invalid date";
                         
                         const options = { year: 'numeric', month: 'short', day: 'numeric' };
@@ -615,7 +617,7 @@
 
         // Confirm Ride - redirect to terms page
         function confirmRide() {
-            window.location.href = "terms.html";
+            window.location.href = "return-search.html";
         }
     </script>
 </body>
