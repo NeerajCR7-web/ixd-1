@@ -1,228 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ontario Parks Social Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Raleway&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Raleway', sans-serif;
-            background: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ontario Parks Social Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Raleway&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
+      font-family: 'Raleway', sans-serif;
+      background: #f5f5f5;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 393px;
+      min-height: 852px;
+      background: white;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .welcome-text {
+      width: 341px;
+      position: absolute;
+      left: 25px;
+      top: 60px;
+      text-align: center;
+      color: black;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 34px;
+      font-weight: 500;
+      line-height: 1.5;
+      margin-bottom: 50px;
+    }
+
+    .content-box {
+      position: absolute;
+      background: rgba(217, 217, 217, 0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      border-radius: 9px;
+    }
+
+    .content-box.large {
+      width: 304px;
+      height: 114px;
+    }
+
+    .content-box.small {
+      width: 164px;
+      height: 114px;
+    }
+
+    .content-box.tips {
+      width: 124px;
+      height: 114px;
+    }
+
+    .content-text {
+      text-align: center;
+      color: rgb(255, 255, 255);
+      font-family: 'Raleway', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    .social-hub-box {
+      left: 42px;
+      top: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      background: #2F75BB;
+      width: 304px;
+      height: 114px;
+    }
+
+    .upcoming-trip-box {
+      left: 42px;
+      top: 370px;
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background: #8B4513;
+      height: 114px;
+    }
+
+    .tips-box {
+      left: 214px;
+      top: 371px;
+    }
+
+    .car-sharing-box {
+      left: 42px;
+      top: 520px;
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background: #FFFFE0;
+      height: 114px;
+    }
+
+    .rush-camping-box {
+      left: 215px;
+      top: 520px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .content-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 9px;
+    }
+
+    .upcoming-trip-box img,
+    .car-sharing-box img {
+      width: 60px;
+      height: 60px;
+      margin-right: 10px;
+      object-fit: contain;
+    }
+
+    .upcoming-trip-box .content-text {
+      text-align: left;
+      font-size: 15px;
+      color: white;
+    }
+
+    .car-sharing-box .content-text {
+      text-align: left;
+      font-size: 15px;
+      color: black;
+    }
+
+    .rush-camping-box .content-text {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 15px;
+      font-weight: 400;
+      text-align: center;
+    }
+
+    .social-hub-box img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+    }
+
+    .social-hub-box .content-text {
+      text-align: left;
+      font-size: 15px;
+      color: black;
+      font-weight: 400;
+    }
+
+    .footer-icons {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 20px;
+      position: absolute;
+      bottom: 20px;
+    }
+
+    .footer-icon {
+      width: 45px;
+      height: 45px;
+      overflow: hidden;
+      position: relative;
+      border-radius: 9px;
+    }
+
+    .footer-icon-inner {
+      position: absolute;
+      background: black;
+    }
+
+    .footer-icon1-inner {
+      width: 36.93px;
+      height: 42.05px;
+      left: 4.37px;
+      top: 2.95px;
+    }
+
+    .footer-icon2-inner {
+      width: 41.67px;
+      height: 37.50px;
+      left: 4.17px;
+      top: 6.25px;
+    }
+
+    .footer-icon3-inner {
+      width: 33.31px;
+      height: 39.62px;
+      left: 5.55px;
+      top: 3.96px;
+    }
+
+    .footer-icon4-inner {
+      width: 33.33px;
+      height: 33.33px;
+      left: 8.33px;
+      top: 8.33px;
+    }
+    
+    .navbar {
             width: 393px;
-            height: 852px;
-            position: relative;
-            background: white;
-            overflow: hidden;
-        }
-        .welcome-text {
-            width: 341px;
+            height: 62px;
+            left: 0px;
+            top: 754px;
             position: absolute;
-            left: 25px;
-            top: 60px;
-            text-align: center;
-            color: black;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 34px;
-            font-weight: 500;
-            line-height: 1.5;
-            margin-bottom: 50px;
         }
-        .content-box {
+        
+        .nav-icons {
+            left: 40px;
+            top: 15px;
             position: absolute;
-            background: rgba(217, 217, 217, 0);
-            display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
+            gap: 64px;
+            display: inline-flex;
+        }
+        
+        .nav-icon {
+            width: 30px;
+            height: 30px;
             cursor: pointer;
-            border-radius: 9px;
         }
-        .content-box.large {
-            width: 304px;
-            height: 114px;
-        }
-        .content-box.small {
-            width: 164px;
-            height: 114px;
-        }
-        .content-box.tips {
-            width: 124px;
-            height: 114px;
-        }
-        .content-text {
-            text-align: center;
+        
+        .nav-label {
+            position: absolute;
             color: black;
+            font-size: 12px;
             font-family: 'Raleway', sans-serif;
-            font-size: 15px;
             font-weight: 400;
         }
-        .social-hub-box {
-            left: 42px;
-            top: 220px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px;
-            background: #2F75BB;
-            width: 304px;
-            height: 114px;
+        
+        .home-label {
+            left: 37px;
+            top: 48px;
         }
-        .upcoming-trip-box {
-            left: 42px;
-            top: 370px;  /* Increased from 350px */
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            background: #8B4513;
-            height: 114px;
+        
+        .book-label {
+            left: 134px;
+            top: 48px;
         }
-        .tips-box {
-            left: 231px;
-            top: 380px;  /* Increased from 350px */
+        
+        .social-label {
+            left: 216px;
+            top: 48px;
         }
-        .car-sharing-box {
-            left: 42px;
-            top: 520px;  /* Increased from 480px */
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            background: #FFFFE0;
-            height: 114px;
+        
+        .profile-label {
+            left: 320px;
+            top: 48px;
         }
-        .rush-camping-box {
-            left: 231px;
-            top: 530px;  /* Increased from 480px */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
+        
+        .nav-divider {
+            width: 393px;
+            height: 0px;
+            outline: 0.20px #7E7B7B solid;
+            outline-offset: -0.10px;
         }
-        .content-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 9px;
-        }
-        .upcoming-trip-box img,
-        .car-sharing-box img {
-            width: 60px;
-            height: 60px;
-            margin-right: 10px;
-            object-fit: contain;
-        }
-        .upcoming-trip-box .content-text {
-            text-align: left;
-            font-size: 15px;
-            color: white;
-        }
-        .car-sharing-box .content-text {
-            text-align: left;
-            font-size: 15px;
-            color: black;
-        }
-        .rush-camping-box .content-text {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: white;
-            font-size: 15px;
-            font-weight: 400;
-            text-align: center;
-        }
-        .social-hub-box img {
-            width: 120px;
-            height: 120px;
-            object-fit: contain;
-        }
-        .social-hub-box .content-text {
-            text-align: left;
-            font-size: 15px;
-            color: black;
-            font-weight: 400;
-        }
-        .footer-icons {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            padding: 0 20px;
-            position: absolute;
-            bottom: 20px;
-        }
-        .footer-icon {
-            width: 45px;
-            height: 45px;
-            overflow: hidden;
-            position: relative;
-            border-radius: 9px;
-        }
-        .footer-icon-inner {
-            position: absolute;
-            background: black;
-        }
-        .footer-icon1-inner {
-            width: 36.93px;
-            height: 42.05px;
-            left: 4.37px;
-            top: 2.95px;
-        }
-        .footer-icon2-inner {
-            width: 41.67px;
-            height: 37.50px;
-            left: 4.17px;
-            top: 6.25px;
-        }
-        .footer-icon3-inner {
-            width: 33.31px;
-            height: 39.62px;
-            left: 5.55px;
-            top: 3.96px;
-        }
-        .footer-icon4-inner {
-            width: 33.33px;
-            height: 33.33px;
-            left: 8.33px;
-            top: 8.33px;
-        }
-    </style>
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="welcome-text">Welcome to <br/>Ontario Parks<br/>Social Hub </div>
-        
-        <div class="content-box large social-hub-box" onclick="window.location.href='discussion.html'">
-            <div class="content-text">CAMP DISCUSSION</div>
-            <img src="images/social-hub.png" alt="Social Hub">
-        </div>
-        
-        <div class="content-box small upcoming-trip-box">
-            <img src="images/upcoming-trip.png" alt="Upcoming Trip Logo">
-            <div class="content-text">Upcoming<br/>Car Sharing<br/>Trip</div>
-        </div>
-        
-        <div class="content-box tips tips-box">
-            <img src="images/tips.png" alt="Tips">
-        </div>
-        
-        <div class="content-box small car-sharing-box" onclick="window.location.href='car-sharing.html'">
-            <img src="images/car-sharing.png" alt="Car Sharing">
-            <div class="content-text">Car Sharing</div>
-        </div>
-        
-        <div class="content-box tips rush-camping-box">
-            <img src="images/rush-camping.png" alt="Rush Camping">
-            <div class="content-text">RUSH CAMPING</div>
-        </div>
-        
-        
+  <div class="container">
+    <div class="welcome-text">Welcome to <br/>Ontario Parks<br/>Social Hub </div>
+
+    <div class="content-box large social-hub-box" onclick="window.location.href='discussion.html'">
+      <div class="content-text">CAMP DISCUSSION</div>
+      <img src="images/social-hub.png" alt="Social Hub" />
     </div>
+
+    <div class="content-box small upcoming-trip-box">
+      <img src="images/upcoming-trip.png" alt="Upcoming Trip Logo" />
+      <div class="content-text">Upcoming<br/>Car Sharing<br/>Trip</div>
+    </div>
+
+    <div class="content-box tips tips-box">
+      <img src="images/tips.png" alt="Tips" />
+    </div>
+
+    <div class="content-box small car-sharing-box" onclick="window.location.href='car-sharing.html'">
+      <img src="images/car-sharing.png" alt="Car Sharing" />
+      <div class="content-text">Car Sharing</div>
+    </div>
+
+    <div class="content-box tips rush-camping-box">
+      <img src="images/rush-camping.png" alt="Rush Camping" />
+      <div class="content-text">RUSH CAMPING</div>
+    </div>
+    <div class="navbar">
+      <div class="nav-divider"></div>
+      <div class="nav-icons">
+          <img class="nav-icon" src="images/Home.png" alt="Home" onclick="window.location.href='index.html'">
+          <img class="nav-icon" src="images/Calendar Plus.png" alt="Book">
+          <img class="nav-icon" src="images/Collaboration.png" alt="Social Hub">
+          <img class="nav-icon" src="images/User.png" alt="Profile">
+      </div>
+      <div class="nav-label home-label">Home</div>
+      <div class="nav-label book-label">Book</div>
+      <div class="nav-label social-label">Social Hub</div>
+      <div class="nav-label profile-label">Profile</div>
+  </div>
+  </div>
 </body>
 </html>

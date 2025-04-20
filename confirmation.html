@@ -77,10 +77,10 @@
         
         .trip-details-box {
             width: 339px;
-            height: 361px;
+            height: 475px;
             position: absolute;
             left: 27px;
-            top: 228px;
+            top: 190px;
             border-radius: 5px;
             border: 0.5px solid black;
             padding: 15px;
@@ -97,7 +97,21 @@
             background: black;
             margin: 15px 0;
             width: 100%;
+            position: absolute;
+    top: 176px;
+    left: 1px;
         }
+
+        .divider-1 {
+            height: 0.5px;
+            background: black;
+            margin: 15px 0;
+            width: 100%;
+            position: absolute;
+    top: 366px;
+    left: 1px;
+        }
+        
         
         .passengers-label {
             color: black;
@@ -181,7 +195,7 @@
         
         .price-divider {
             width: 0.5px;
-            height: 100px;
+            height: 159px;
             background: black;
         }
         
@@ -194,6 +208,13 @@
         
         .return-price {
             font-family: 'Raleway', sans-serif;
+        }
+        
+        .tax-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
         }
         
         .total-section {
@@ -226,8 +247,12 @@
         
         .vertical-divider {
             width: 0.5px;
-            height: 24px;
+            height: 28px;
             background: black;
+
+            position: absolute;
+    right: 70px;
+    bottom: 60px;
         }
         
         .button-container {
@@ -353,12 +378,22 @@
                 </div>
                 
                 <div class="passengers-names">
+                    # of Passengers: 2 <br/>
                     John Smith<br/>Alex Green
                 </div>
                 
                 <div class="pickup-info">
                     <span>Pick Up in Toronto: </span>
                     <span class="pickup-time">TBA</span>
+                </div>
+                <div class="pickup-info">
+                    <span>Name of Driver </span>
+                    <span class="pickup-time">John</span>
+                </div>
+
+                <div class="passengers-names">
+                    Badge Tier/# Rides Given: <br/>
+                    Ultimate Camper/12 Rides Given
                 </div>
             </div>
             
@@ -380,6 +415,7 @@
                 </div>
                 
                 <div class="passengers-names">
+                    # of passengers: 2 <br/>
                     John Smith<br/>Alex Green
                 </div>
                 
@@ -389,19 +425,43 @@
                     <span class="pickup-time"> pm</span>
                 </div>
             </div>
+
+            <div class="divider-1"></div>
+
             
-            <div class="divider"></div>
             
             <!-- Driver Section -->
             <div class="driver-info">
                 <div>
                     <span class="passengers-label">Name of Driver: </span>
-                    <span class="driver-name">John</span>
+                    <span class="driver-name">Sam</span>
                 </div>
                 <div class="driver-badge">
                     Badge Tier/# Rides Given:<br/>
-                    <span class="badge-tier">Ultimate Camper/12 rides given</span>
+                    <span class="badge-tier">Trailblazer/10 rides given</span>
                 </div>
+            </div>
+            
+            <div class="divider"></div>
+
+
+            <div class="tax-section">
+                <div class="total-container">
+                    <div class="total-label">Service Fee</div>
+                    <div class="vertical-divider"></div>
+                </div>
+                
+                <div class="total-price">$2.00</div>
+                
+            </div>
+            
+            <div class="tax-section">
+                <div class="total-container">
+                    <div class="total-label">HST (13%)</div>
+                </div>
+                
+                <div class="total-price">$6.37</div>
+                
             </div>
             
             <!-- Total Section -->
