@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Sharing App</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Raleway:wght@400&family=Inter:wght@400&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Raleway', sans-serif;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .main-container {
+            width: 393px;
+            height: 852px;
+            position: relative;
+            overflow: hidden;
+            background: white;
+        }
+        
+        .divider {
+            width: 390px;
+            height: 0px;
+            left: 1px;
+            top: 437px;
+            position: absolute;
+            outline: 1px #AFA9A9 solid;
+            outline-offset: -0.50px;
+        }
+        
+        .header {
+            width: 393px;
+            height: 142px;
+            left: 0px;
+            top: 0px;
+            position: absolute;
+            background: #2F75BB;
+        }
+        
+        .title {
+            left: 121px;
+            top: 93px;
+            position: absolute;
+            color: white;
+            font-size: 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .back {
+            left: 32px;
+            top: 61px;
+            position: absolute;
+            color: white;
+            font-size: 14px;
+            font-family: 'Raleway', sans-serif;
+            cursor: pointer;
+        }
+        
+        .back-arrow {
+            width: 25px;
+            height: 25px;
+            left: 12px;
+            top: 57px;
+            position: absolute;
+            
+        }
+        
+        .section-title {
+            left: 139px;
+            top: 450px;
+            position: absolute;
+            color: black;
+            font-size: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .column-header {
+            color: black;
+            font-size: 12px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            top: 481px;
+            position: absolute;
+        }
+        
+        .driver-name {
+            color: black;
+            font-size: 12px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            left: 45px;
+            position: absolute;
+            cursor: pointer;
+            padding: 5px 10px;
+            border: 1px solid #2F75BB;
+            border-radius: 4px;
+            background-color: #f0f8ff;
+        }
+        
+        .driver-name:hover {
+            color: #2F75BB;
+            text-decoration: underline;
+            background-color: #e1f0ff;
+        }
+        
+        .ratings {
+            text-align: center;
+            color: black;
+            font-size: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            position: absolute;
+        }
+        
+        .star {
+            color: #FFA500;
+            font-size: 14px;
+            margin-left: 2px;
+        }
+        
+        .car-price {
+            text-align: center;
+            color: black;
+            font-size: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            position: absolute;
+        }
+        
+        /* Driver Info Box */
+        .driver-info-box {
+            position: absolute;
+            top: 480px;
+            left: 6px;
+            width: 350px;
+            background: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border: 1px solid #2F75BB;
+            display: none;
+            z-index: 100;
+        }
+        
+        .driver-info-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .driver-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 2px solid #2F75BB;
+        }
+        
+        .driver-info-name-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+        
+        .driver-info-title {
+            font-weight: 600;
+            color: #2F75BB;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            margin: 0;
+        }
+        
+        .driver-info-badge {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .driver-info-rating {
+            font-size: 14px;
+            color: #FFA500;
+            margin-bottom: 5px;
+        }
+        
+        .driver-info-details {
+            margin-top: 15px;
+        }
+        
+        .driver-info-item {
+            margin-bottom: 5px;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+        }
+        
+        .driver-info-label {
+            font-weight: 600;
+            min-width: 100px;
+        }
+        
+        .driver-bio {
+            margin-top: 10px;
+            font-size: 14px;
+            line-height: 1.4;
+            color: #333;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            border-left: 3px solid #2F75BB;
+        }
+        
+        .close-driver-info {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            color: #2F75BB;
+        }
+        
+        /* Confirm Ride Button */
+        .confirm-ride-btn {
+            width: 150px;
+            height: 40px;
+            background: #2F75BB;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            margin: 20px auto 0;
+            display: block;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .confirm-ride-btn:hover {
+            background: #1a5a9e;
+        }
+        
+        .badge-icon {
+            position: absolute;
+            width: 19px;
+            height: 19px;
+        }
+        
+        .badge-label {
+            text-align: center;
+            color: black;
+            font-size: 6px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            position: absolute;
+        }
+        
+        .nav-bar {
+            width: 393px;
+            height: 62px;
+            left: 0px;
+            top: 754px;
+            position: absolute;
+        }
+        
+        .nav-divider {
+            width: 393px;
+            height: 0px;
+            left: 0px;
+            top: 0px;
+            position: absolute;
+            outline: 0.20px #7E7B7B solid;
+            outline-offset: -0.10px;
+        }
+        
+        .nav-icons {
+            left: 40px;
+            top: 15px;
+            position: absolute;
+            display: inline-flex;
+            gap: 64px;
+        }
+        
+        .nav-icon {
+            width: 30px;
+            height: 30px;
+           
+        }
+        
+        .nav-label {
+            color: black;
+            font-size: 12px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            position: absolute;
+        }
+        
+        /* Search Parameters Section */
+        .search-params {
+            position: absolute;
+            top: 180px;
+            left: 8px;
+            width: 350px;
+            background: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border: 1px solid #2F75BB;
+        }
+        
+        .param-item {
+            margin-bottom: 8px;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+        }
+        
+        .param-label {
+            font-weight: 600;
+            color: #2F75BB;
+            min-width: 100px;
+        }
+        
+        .param-value {
+            font-weight: 400;
+        }
+        .ratings {
+    text-align: center;
+    color: black;
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    position: absolute;
+    cursor: pointer;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.ratings:hover {
+    background-color: #f0f8ff;
+    color: #2F75BB;
+}
+
+.star {
+    color: #FFA500;
+    font-size: 14px;
+    margin-left: 2px;
+}
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="divider"></div>
+        
+        <!-- Header -->
+        <div class="header"></div>
+        <div class="title">Car Sharing</div>
+        <div class="back" onclick="window.location.href='search-ride.html'">Back</div>
+        <div class="back-arrow" src="images/Back.png"></div>
+        
+        <!-- Search Parameters Display -->
+        <div class="search-params" id="search-params">
+            <div class="param-item"><span class="param-label">From:</span> <span class="param-value" id="param-from"></span></div>
+            <div class="param-item"><span class="param-label">To:</span> <span class="param-value" id="param-to"></span></div>
+            <div class="param-item"><span class="param-label">Passengers:</span> <span class="param-value" id="param-passengers"></span></div>
+            <div class="param-item"><span class="param-label">Date:</span> <span class="param-value" id="param-date"></span></div>
+        </div>
+        
+        <!-- Driver Info Box with Confirm Button -->
+        <div class="driver-info-box" id="driver-info-box">
+            <button class="close-driver-info" onclick="hideDriverInfo()">×</button>
+            <div class="driver-info-header">
+                <img class="driver-image" id="driver-info-image" src="" alt="Driver photo">
+                <div>
+                    <div class="driver-info-name-container">
+                        <div class="driver-info-title" id="driver-info-name"></div>
+                        <img class="driver-info-badge" id="driver-info-badge" src="" alt="Badge">
+                    </div>
+                    <div class="driver-info-rating" id="driver-info-rating"></div>
+                    <div class="driver-info-item">
+                        <span class="driver-info-label">Vehicle:</span>
+                        <span id="driver-info-vehicle"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="driver-info-details">
+                <div class="driver-info-item">
+                    <span class="driver-info-label">Experience:</span>
+                    <span id="driver-info-exp"></span>
+                </div>
+                <div class="driver-info-item">
+                    <span class="driver-info-label">Phone:</span>
+                    <span id="driver-info-phone"></span>
+                </div>
+                <div class="driver-info-item">
+                    <span class="driver-info-label">Price:</span>
+                    <span id="driver-info-price"></span>
+                </div>
+                
+                <div class="driver-bio" id="driver-info-bio"></div>
+                
+                <!-- Confirm Ride Button -->
+                <button class="confirm-ride-btn" onclick="confirmRide()">Reserve Driver</button>
+            </div>
+        </div>
+        
+        <!-- Column Headers -->
+        <div class="column-header" style="left: 18px;">Name of Driver</div>
+        <div class="column-header" style="left: 222px;">Ratings</div>
+        <div class="column-header" style="left: 132px;">Badge Tier</div>
+        <div class="column-header" style="left: 320px;">Car Price</div>
+        
+        <div class="section-title">RIDES AVAILABLE</div>
+        
+        <!-- Driver List -->
+        <div class="driver-name" style="top: 522px;" onclick="showDriverInfo(
+            'Tom',
+            'Ford F-150',
+            '4.8 ★ (42 reviews)',
+            '2 years',
+            '647-555-1234',
+            '$65',
+            'https://randomuser.me/api/portraits/men/33.jpg',
+            'Experienced outdoor enthusiast with extensive knowledge of national park trails. My RAV4 is equipped with roof racks for your gear and comfortable for long drives. I offer guided commentary during our trip!',
+            'images/diamond.png',
+            'Ultimate Camper'
+        )">Tom</div>
+        
+        <div class="driver-name" style="top: 566px;" onclick="showDriverInfo(
+            'Sam',
+            'Honda CR-V',
+            '4 ★ (21 reviews)',
+            '2 years',
+            '416-555-5678',
+            '$74',
+            'https://randomuser.me/api/portraits/men/44.jpg',
+            'Nature photographer who loves sharing hidden gems in the parks. My CR-V has plenty of space for camera equipment. I can recommend the best spots for wildlife viewing and photography.',
+            'images/gold.png',
+            'Trailblazer'
+        )">Sam</div>
+        
+        <div class="driver-name" style="top: 611px;" onclick="showDriverInfo(
+            'Jeff',
+            'Subaru Outback',
+            '3.5 ★ (9 reviews)',
+            '1 year',
+            '905-555-9012',
+            '$80',
+            'https://randomuser.me/api/portraits/men/75.jpg',
+            'Former park ranger with insider knowledge of park systems. My Outback is perfect for off-road adventures. I provide hiking tips and can customize the trip based on your interests.',
+            'images/silver.png',
+            'Explorer'
+        )">Jeff</div>
+        
+        <div class="driver-name" style="top: 655px;" onclick="showDriverInfo(
+            'Luc',
+            'Ford Escape',
+            '4 ★ (36 reviews)',
+            '2.5 years',
+            '289-555-3456',
+            '$82',
+            'https://randomuser.me/api/portraits/men/7.jpg',
+            'Family-friendly driver with car seats available. I specialize in trips for families with kids, knowing all the best picnic spots and easy trails. My Escape has entertainment systems for long rides.',
+            'images/bronze.png',
+            'Basic Camper'
+        )">Luc</div>
+        
+        <div class="driver-name" style="top: 699px;" onclick="showDriverInfo(
+            'Kethy',
+            'Jeep Wrangler',
+            '4.9 ★ (36 reviews)',
+            '4 years',
+            '437-555-7890',
+            '$78',
+            'https://randomuser.me/api/portraits/women/69.jpg',
+            'Adventure seeker who can take you off the beaten path. My Wrangler is equipped for any terrain. I offer sunrise/sunset tours and know the best viewpoints in every season.',
+            'images/diamond.png',
+            'Ultimate Camper'
+        )">Kethy</div>
+        
+        <!-- Ratings -->
+        <div class="ratings" style="left: 222px; top: 522px;"  >4.8<span class="star">★</span></div>
+        <div class="ratings" style="left: 222px; top: 566px; " onclick="window.location.href='review-sam.html'">4.5<span class="star">★</span></div>
+        <div class="ratings" style="left: 222px; top: 611px;">4.2<span class="star">★</span></div>
+        <div class="ratings" style="left: 222px; top: 655px;">4.6<span class="star">★</span></div>
+        <div class="ratings" style="left: 222px; top: 697px;">4.9<span class="star">★</span></div>
+        
+        <!-- Car Prices -->
+        <div class="car-price" style="left: 334px; top: 519px;">$65</div>
+        <div class="car-price" style="left: 335px; top: 563px;">$74</div>
+        <div class="car-price" style="left: 335px; top: 608px;">$80</div>
+        <div class="car-price" style="left: 335px; top: 655px;">$82</div>
+        <div class="car-price" style="left: 336px; top: 697px;">$78</div>
+        
+        <!-- Badge Icons -->
+        <img class="badge-icon" style="left: 155px; top: 514px;" src="images/diamond.png" />
+        <img class="badge-icon" style="left: 155px; top: 559px;" src="images/gold.png" />
+        <img class="badge-icon" style="left: 156px; top: 609px;" src="images/silver.png" />
+        <img class="badge-icon" style="left: 156px; top: 651px;" src="images/bronze.png" />
+        <img class="badge-icon" style="left: 155px; top: 699px;" src="images/diamond.png" />
+        
+        <!-- Badge Labels -->
+        <div class="badge-label" style="width: 55px; left: 137px; top: 535px;">ultimate camper</div>
+        <div class="badge-label" style="width: 39px; left: 145px; top: 581px;">trailblazer</div>
+        <div class="badge-label" style="width: 37px; left: 146px; top: 629px;">explorer</div>
+        <div class="badge-label" style="width: 51px; left: 142px; top: 672px;">basic camper</div>
+        <div class="badge-label" style="width: 55px; left: 137px; top: 720px;">ultimate camper</div>
+        
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <div class="nav-divider"></div>
+            <div class="nav-icons">
+                <img class="nav-icon" src="images/Home.png" alt="Home" onclick="window.location.href='index.html'">
+                <img class="nav-icon" src="images/Calendar Plus.png" alt="Book" onclick="window.location.href='book.html'">
+                <img class="nav-icon" src="images/Collaboration.png" alt="Social Hub" onclick="window.location.href='social-hub.html'">
+                <img class="nav-icon" src="images/User.png" alt="Profile" onclick="window.location.href='profile.html'">
+            </div>
+            <div class="nav-label" style="left: 37px; top: 48px;">Home</div>
+            <div class="nav-label" style="left: 134px; top: 48px;">Book</div>
+            <div class="nav-label" style="left: 216px; top: 48px;">Social Hub</div>
+            <div class="nav-label" style="left: 320px; top: 48px;">Profile</div>
+        </div>
+    </div>
+
+    <script>
+        // Parse URL parameters when page loads and store them in localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            let searchParams = {};
+            
+            // Check if parameters exist in URL
+            if (urlParams.has('from')) {
+                searchParams = {
+                    from: decodeURIComponent(urlParams.get('from')),
+                    to: decodeURIComponent(urlParams.get('to')),
+                    passengers: urlParams.get('passengers'),
+                    start: urlParams.get('start')
+                };
+                // Store in localStorage
+                localStorage.setItem('searchParams', JSON.stringify(searchParams));
+            } else {
+                // Try to get from localStorage if not in URL
+                const storedParams = localStorage.getItem('searchParams');
+                if (storedParams) {
+                    searchParams = JSON.parse(storedParams);
+                }
+            }
+            
+            // Display the parameters if they exist
+            if (searchParams.from) {
+                document.getElementById('param-from').textContent = searchParams.from;
+                document.getElementById('param-to').textContent = searchParams.to;
+                document.getElementById('param-passengers').textContent = searchParams.passengers;
+                
+                // Format date for display (e.g., "Jan 1, 2023" instead of "2023-01-01")
+                const formatDate = (dateStr) => {
+                    try {
+                        const date = new Date(dateStr);
+                        if (isNaN(date.getTime())) return "Invalid date";
+                        
+                        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+                        return date.toLocaleDateString('en-US', options);
+                    } catch (e) {
+                        return "Invalid date";
+                    }
+                };
+                
+                const startDate = formatDate(searchParams.start);
+                document.getElementById('param-date').textContent = startDate;
+            } else {
+                // Hide the parameters section if no search was made
+                document.getElementById('search-params').style.display = 'none';
+            }
+        });
+
+        // Show driver info when name is clicked
+        function showDriverInfo(name, vehicle, rating, exp, phone, price, imageUrl, bio, badgeUrl, badgeName) {
+            const infoBox = document.getElementById('driver-info-box');
+            
+            // Set driver info
+            document.getElementById('driver-info-name').textContent = name;
+            document.getElementById('driver-info-vehicle').textContent = vehicle;
+            document.getElementById('driver-info-rating').textContent = rating;
+            document.getElementById('driver-info-exp').textContent = exp;
+            document.getElementById('driver-info-phone').textContent = phone;
+            document.getElementById('driver-info-price').textContent = price;
+            document.getElementById('driver-info-image').src = imageUrl;
+            document.getElementById('driver-info-image').alt = `${name}'s photo`;
+            document.getElementById('driver-info-bio').textContent = bio;
+            
+            // Set badge info
+            document.getElementById('driver-info-badge').src = badgeUrl;
+            document.getElementById('driver-info-badge').alt = badgeName;
+            document.getElementById('driver-info-badge').title = badgeName;
+            
+            // Position and show the box
+            infoBox.style.display = 'block';
+        }
+
+        // Hide driver info
+        function hideDriverInfo() {
+            document.getElementById('driver-info-box').style.display = 'none';
+        }
+
+        // Confirm Ride - redirect to terms page
+        function confirmRide() {
+            window.location.href = "terms.html";
+        }
+    </script>
+</body>
+</html>
