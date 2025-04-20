@@ -11,7 +11,6 @@
             margin: 0;
             padding: 0;
             font-family: 'Raleway', sans-serif;
-            overflow: hidden; /* Prevent body scrolling */
         }
         
         .container {
@@ -113,11 +112,14 @@
             top: 261px;
         }
         
+        /* SECTION TITLE */
         .section-title {
             position: absolute;
             color: black;
             font-size: 18px;
             font-weight: 600;
+            background: white; /* keep label opaque */
+            z-index: 10;       /* above the scrolling posts */
         }
         
         .previous-questions {
@@ -126,13 +128,31 @@
             top: 355px;
         }
         
+        .create-post {
+            width: 233px;
+            height: 37px;
+            position: absolute;
+            left: 80px;
+            top: 307px;
+            background: #028A61;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            z-index: 10;
+        }
+        
         /* Scrollable posts container */
         #postsContainer {
             position: absolute;
-            top: 355px;
+            top: 380px; /* shifted down so it doesn’t cover “Previous Questions” */
             left: 0;
             right: 0;
-            bottom: 62px; /* Space for footer */
+            bottom: 62px; /* space for footer */
             overflow-y: auto; /* Vertical scroll only */
             padding-bottom: 20px;
         }
@@ -211,9 +231,9 @@
         .footer {
             width: 393px;
             height: 62px;
-            position: fixed;
-            left: 750px;
-            bottom: 0;
+            position: absolute;    /* now absolutely positioned inside .container */
+            left: 0;               /* flush to the container’s left edge */
+            bottom: 0;             /* flush to the container’s bottom edge */
             border-top: 0.2px solid #7E7B7B;
             background: white;
             z-index: 100;
@@ -242,24 +262,6 @@
             color: black;
             font-size: 12px;
             font-weight: 400;
-        }
-        
-        .create-post {
-            width: 233px;
-            height: 37px;
-            position: absolute;
-            left: 80px;
-            top: 307px;
-            background: #028A61;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            z-index: 10;
         }
         
         .user-avatar {
@@ -515,7 +517,7 @@
             color: rgba(0, 0, 0, 0.5);
             margin-top: 2px;
         }
-
+        
         .edit-post-container {
             position: absolute;
             left: 37px;
@@ -526,7 +528,7 @@
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-
+        
         .edit-title-input {
             width: 100%;
             height: 34px;
@@ -538,7 +540,7 @@
             font-size: 16px;
             margin-bottom: 5px;
         }
-
+        
         .edit-body-input {
             width: 100%;
             height: 127px;
@@ -551,13 +553,13 @@
             resize: none;
             margin-bottom: 5px;
         }
-
+        
         .edit-buttons-container {
             display: flex;
             justify-content: flex-end;
             margin-top: 10px;
         }
-
+        
         .save-button {
             background: #028A61;
             color: white;
@@ -569,7 +571,7 @@
             font-family: 'Raleway', sans-serif;
             margin-right: 5px;
         }
-
+        
         .cancel-button {
             background: #ff4444;
             color: white;
@@ -580,15 +582,7 @@
             cursor: pointer;
             font-family: 'Raleway', sans-serif;
         }
-
-        .vote-arrow:hover {
-            opacity: 1;
-        }
-
-        .vote-count {
-            margin: 0 5px;
-        }
-
+        
         .popup-notification {
             position: fixed;
             top: 50%;
@@ -605,12 +599,12 @@
             font-size: 16px;
             animation: fadeIn 0.3s;
         }
-
+        
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
+        
         .popup-overlay {
             position: fixed;
             top: 0;
@@ -681,15 +675,13 @@
         <div class="category-label label-2">Frequently Asked<br>Questions</div>
         <div class="category-label label-3">Car Sharing<br>Questions</div>
         
-        <div class="section-title previous-questions">Previous Questions</div>
-        
         <div class="create-post" onclick="window.location.href='create-post.html'">
             create a post
             <div style="margin-left: 10px;">+</div>
             <img src="images/pen.png" alt="+" style="width: 15px; height: 15px; margin-left: 10px;">
         </div>
         
-        <!-- Scrollable posts container -->
+        <div class="section-title previous-questions">Previous Questions</div>
         <div id="postsContainer"></div>
         
         <div class="footer">
@@ -842,7 +834,7 @@
                     const isConfirmingDelete = post.isConfirmingDelete || false;
                     
                     postElement.innerHTML = `
-                        <div class="user-info" style="left: 77px; top: ${40}px;">
+                        <div class="user-info" style="left: 77px; top: ${30}px;">
                             <span class="username">${post.username}</span>
                             <span class="time">${post.timestamp}</span>
                         </div>
@@ -889,13 +881,14 @@
                             <div class="action-button-small">
                                 <img src="images/dots.png" alt="Bookmark" style="width: 12px; height: 12px;">
                             </div>
-                            ${post.username === currentUser && !isConfirmingDelete ? 
+                            ${post.username === currentUser && !isConfirmingDelete ?
                                 `<button class="edit-button" onclick="editPost(${post.id})">
                                     <img src="images/edit.png" alt="Edit" class="edit-icon"> Edit
                                 </button>
-                                <button class="delete-button" onclick="showDeleteConfirmation(${post.id})">Delete</button>` 
+                                <button class="delete-button" onclick="showDeleteConfirmation(${post.id})">Delete</button>`
                                 : ''}
                         </div>
+                        
                         <div class="user-avatar" style="left: 35px; top: ${30}px;"></div>
                         <div class="user-badge" style="left: 135px; top: ${60}px; width: 51px;">${post.userBadge}</div>
                         <img class="badge-icon" src="images/${post.userBadge.includes('basic') ? 'gold' : 'silver'}.png" alt="Badge" style="width: 18px; height: 18px; left: 149px; top: ${30}px;">
