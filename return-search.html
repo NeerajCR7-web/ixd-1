@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Car Sharing App</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Raleway:wght@400&family=Inter:wght@400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Raleway&family=Inter&display=swap');
         
         body {
             margin: 0;
@@ -89,8 +89,8 @@
             font-size: 12px;
             font-family: 'Raleway', sans-serif;
             font-weight: 400;
-            top: 481px;
             position: absolute;
+            top: 485px;
         }
         
         .driver-name {
@@ -120,6 +120,14 @@
             font-family: 'Montserrat', sans-serif;
             font-weight: 400;
             position: absolute;
+            cursor: pointer;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+        
+        .ratings:hover {
+            background-color: #f0f8ff;
+            color: #2F75BB;
         }
         
         .star {
@@ -295,7 +303,6 @@
         .nav-icon {
             width: 30px;
             height: 30px;
-           
         }
         
         .nav-label {
@@ -334,28 +341,31 @@
         .param-value {
             font-weight: 400;
         }
+        
+        /* Search Parameters Labels Swapped Above */
+        
         .ratings {
-    text-align: center;
-    color: black;
-    font-size: 12px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    position: absolute;
-    cursor: pointer;
-    padding: 2px 5px;
-    border-radius: 4px;
-}
-
-.ratings:hover {
-    background-color: #f0f8ff;
-    color: #2F75BB;
-}
-
-.star {
-    color: #FFA500;
-    font-size: 14px;
-    margin-left: 2px;
-}
+            text-align: center;
+            color: black;
+            font-size: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            position: absolute;
+            cursor: pointer;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+        
+        .ratings:hover {
+            background-color: #f0f8ff;
+            color: #2F75BB;
+        }
+        
+        .star {
+            color: #FFA500;
+            font-size: 14px;
+            margin-left: 2px;
+        }
     </style>
 </head>
 <body>
@@ -366,9 +376,9 @@
         <div class="header"></div>
         <div class="title">Car Sharing</div>
         <div class="back" onclick="window.location.href='search-ride.html'">Back</div>
-        <div class="back-arrow" src="images/Back.png"></div>
+        <img class="back-arrow" src="images/Back.png" alt="Back">
         
-        <!-- Search Parameters Display -->
+        <!-- Search Parameters Section -->
         <div class="search-params" id="search-params">
             <div class="param-item"><span class="param-label">From:</span> <span class="param-value" id="param-from"></span></div>
             <div class="param-item"><span class="param-label">To:</span> <span class="param-value" id="param-to"></span></div>
@@ -376,7 +386,7 @@
             <div class="param-item"><span class="param-label">Date:</span> <span class="param-value" id="param-date"></span></div>
         </div>
         
-        <!-- Driver Info Box with Confirm Button -->
+        <!-- Driver Info Box -->
         <div class="driver-info-box" id="driver-info-box">
             <button class="close-driver-info" onclick="hideDriverInfo()">×</button>
             <div class="driver-info-header">
@@ -417,8 +427,8 @@
         
         <!-- Column Headers -->
         <div class="column-header" style="left: 18px;">Name of Driver</div>
-        <div class="column-header" style="left: 222px;">Ratings</div>
         <div class="column-header" style="left: 132px;">Badge Tier</div>
+        <div class="column-header" style="left: 222px;">Ratings</div>
         <div class="column-header" style="left: 320px;">Car Price</div>
         
         <div class="section-title">RIDES AVAILABLE</div>
@@ -490,8 +500,8 @@
         )">Kethy</div>
         
         <!-- Ratings -->
-        <div class="ratings" style="left: 222px; top: 522px;"  >4.8<span class="star">★</span></div>
-        <div class="ratings" style="left: 222px; top: 566px; " onclick="window.location.href='review-sam.html'">4.5<span class="star">★</span></div>
+        <div class="ratings" style="left: 222px; top: 522px;">4.8<span class="star">★</span></div>
+        <div class="ratings" style="left: 222px; top: 566px;" onclick="window.location.href='review-sam.html'">4.5<span class="star">★</span></div>
         <div class="ratings" style="left: 222px; top: 611px;">4.2<span class="star">★</span></div>
         <div class="ratings" style="left: 222px; top: 655px;">4.6<span class="star">★</span></div>
         <div class="ratings" style="left: 222px; top: 697px;">4.9<span class="star">★</span></div>
@@ -557,10 +567,10 @@
                 }
             }
             
-            // Display the parameters if they exist
+            // Display the parameters if they exist (swapped)
             if (searchParams.from) {
-                document.getElementById('param-from').textContent = searchParams.from;
-                document.getElementById('param-to').textContent = searchParams.to;
+                document.getElementById('param-from').textContent = searchParams.to;
+                document.getElementById('param-to').textContent = searchParams.from;
                 document.getElementById('param-passengers').textContent = searchParams.passengers;
                 
                 // Format date for display (e.g., "Jan 1, 2023" instead of "2023-01-01")

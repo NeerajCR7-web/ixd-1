@@ -134,8 +134,9 @@
         .to-input {
             width: 200px;
             height: 37px;
-            left: 102px;
-            top: 411px;
+            position: absolute;
+            left: 24px;
+    top: -2px;
             background: white;
             border-radius: 6px;
             border: 1px solid black;
@@ -273,25 +274,10 @@
             font-weight: 400;
         }
         
-        .home-label {
-            left: 37px;
-            top: 48px;
-        }
-        
-        .book-label {
-            left: 134px;
-            top: 48px;
-        }
-        
-        .social-label {
-            left: 216px;
-            top: 48px;
-        }
-        
-        .profile-label {
-            left: 320px;
-            top: 48px;
-        }
+        .home-label { left: 37px; top: 48px; }
+        .book-label { left: 134px; top: 48px; }
+        .social-label { left: 216px; top: 48px; }
+        .profile-label { left: 320px; top: 48px; }
         
         /* Map Modal */
         .map-modal {
@@ -356,6 +342,7 @@
             max-height: 150px;
             overflow-y: auto;
             display: none;
+            background: #fff;
         }
         
         .autocomplete-items div {
@@ -366,10 +353,7 @@
             font-family: 'Raleway', sans-serif;
         }
         
-        .autocomplete-items div:hover {
-            background-color: #e9e9e9;
-        }
-        
+        .autocomplete-items div:hover,
         .autocomplete-active {
             background-color: #028A61 !important;
             color: #ffffff;
@@ -411,8 +395,8 @@
         <img class="car-image" src="images/sharing.png" alt="Car sharing">
         
         <!-- Form Labels -->
-        <div class="label from-label">From: </div>
-        <div class="label to-label">To:</div>
+        <div class="label from-label">To: </div>
+        <div class="label to-label">From:</div>
         <div class="label passengers-label">Number of Passengers :</div>
         <div class="label start-date-label">Start Date:</div>
         <div class="label end-date-label">End Date:</div>
@@ -650,6 +634,23 @@
             const toInput = document.getElementById("to-location");
             const autocompleteList = document.getElementById("to-autocomplete-list");
             let currentFocus = -1;
+
+            // Show all parks on focus
+            toInput.addEventListener("focus", function() {
+                autocompleteList.innerHTML = "";
+                canadianParks.forEach(park => {
+                    const item = document.createElement("div");
+                    item.innerHTML = park;
+                    item.addEventListener("click", function() {
+                        toInput.value = park;
+                        autocompleteList.innerHTML = "";
+                        autocompleteList.style.display = "none";
+                    });
+                    autocompleteList.appendChild(item);
+                });
+                autocompleteList.style.display = "block";
+                currentFocus = -1;
+            });
 
             toInput.addEventListener("input", function() {
                 const val = this.value;
